@@ -1,0 +1,20 @@
+format: jb-book
+root: index
+
+options:
+  numbered: true
+
+parts:
+
+  - caption: FundamentalsIntroduction
+    chapters:
+      - file: 01_introduction/introduction
+
+  - caption: Fundamentals
+    chapters:
+      - file: 02_fundamentals/fundamentals
+
+
+  - caption: Referanser
+    chapters:
+      - file: references
