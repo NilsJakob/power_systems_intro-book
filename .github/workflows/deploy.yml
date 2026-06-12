@@ -24,10 +24,10 @@ jobs:
 
       - name: Build the Jupyter Book
         run: |
-          jupyter-book build mybook/
+          jupyter-book build power_systems_intro-book/
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: mybook/_build/html
+          publish_dir: power_systems_intro-book/_build/html
