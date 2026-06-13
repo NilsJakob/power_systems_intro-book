@@ -181,6 +181,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../03_circuits/representations.html">Basic represantations</a></li>
 
 
+<li class="toctree-l1"><a class="reference internal" href="../04_threephase/threephase.html">Three-Phase Circuits</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Referanser</span></p>
 <ul class="nav bd-sidenav">
@@ -498,7 +499,7 @@ v(t) = \hat{V} \cdot \cos(\omega t)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/7c7b6c1fbc967472730a6b1c92feff5b554278defbe486bc644e3b3790094b93.png" src="../_images/7c7b6c1fbc967472730a6b1c92feff5b554278defbe486bc644e3b3790094b93.png" />
+<img alt="../_images/34bea42d589597e8588df675eb956b0695941aec86c7d6bf15d07f31f47ef9f6.png" src="../_images/34bea42d589597e8588df675eb956b0695941aec86c7d6bf15d07f31f47ef9f6.png" />
 </div>
 </div>
 <p>In power systems, it is common to describe <span class="math notranslate nohighlight">\(\cos(\omega t)\)</span>, because this represents the projection of the voltage <span class="math notranslate nohighlight">\(v\)</span> onto the cosine axis and gives the value 1 when <span class="math notranslate nohighlight">\(v(t) = 0\)</span>. At that point, <span class="math notranslate nohighlight">\(v(0)\)</span> equals the constant <span class="math notranslate nohighlight">\(V\)</span>, which is the same as the amplitude <span class="math notranslate nohighlight">\(\hat{V}\)</span>.</p>
@@ -611,6 +612,43 @@ P = V_{RMS} I_{RMS} \cos\theta
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="c1"># Data</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>
+<span class="n">v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+
+<span class="c1"># RMS value</span>
+<span class="n">v_rms</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">v</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+
+<span class="c1"># Plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Signal (sinus)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">v_rms</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;RMS-value&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="o">-</span><span class="n">v_rms</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Visualise RMS&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Amplitude&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># Save file</span>
+<span class="c1">#file_path = &#39;/mnt/data/rms_visualisering.png&#39;</span>
+<span class="c1">#plt.savefig(file_path)</span>
+<span class="c1">#plt.close()</span>
+
+<span class="c1">#file_path</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/edd7afdda2c316106b4a0ca60f6e64d23ad9d1ca1bd90aeb62cf97cd214857fa.png" src="../_images/edd7afdda2c316106b4a0ca60f6e64d23ad9d1ca1bd90aeb62cf97cd214857fa.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.animation</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">animation</span>
 
 <span class="c1"># Parameters</span>
@@ -686,7 +724,7 @@ P = V_{RMS} I_{RMS} \cos\theta
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/309c9f7a3dff455e46845705abb552cf14f3a2c844241a411450adaf8b437652.png" src="../_images/309c9f7a3dff455e46845705abb552cf14f3a2c844241a411450adaf8b437652.png" />
+<img alt="../_images/2a3b3381ded9b6a151efbf23008e88f24455f78908674eb777bd3ee739cb362b.png" src="../_images/2a3b3381ded9b6a151efbf23008e88f24455f78908674eb777bd3ee739cb362b.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -768,7 +806,7 @@ P = V_{RMS} I_{RMS} \cos\theta
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/66fea2de6dfd936b14a866b0ff1bb71a5408d2fbe4156bd634eb3996091c00b4.png" src="../_images/66fea2de6dfd936b14a866b0ff1bb71a5408d2fbe4156bd634eb3996091c00b4.png" />
+<img alt="../_images/6078231d5c2266ea9fb323cb20273371b2e06546669853cd5e28e653766f8601.png" src="../_images/6078231d5c2266ea9fb323cb20273371b2e06546669853cd5e28e653766f8601.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -870,7 +908,7 @@ P = V_{RMS} I_{RMS} \cos\theta
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/60049cfba171701695c909565a6492c44aac444516fbde2d6f070a9dffde2cf5.png" src="../_images/60049cfba171701695c909565a6492c44aac444516fbde2d6f070a9dffde2cf5.png" />
+<img alt="../_images/de35d0a9582b34cbcc4553e402aff32837d238f8cb0aed5338b2f013ef0f3d57.png" src="../_images/de35d0a9582b34cbcc4553e402aff32837d238f8cb0aed5338b2f013ef0f3d57.png" />
 </div>
 </div>
 </section>
