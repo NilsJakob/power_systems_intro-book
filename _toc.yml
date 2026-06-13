@@ -14,6 +14,7 @@ parts:
     chapters:
       - file: 02_fundamentals/fundamentals
       - file: 03_circuits/representations
+      - file: 04_threephase/threephase
 
 
   - caption: Referanser
