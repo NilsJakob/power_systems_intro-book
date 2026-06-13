@@ -1,0 +1,11 @@
+# Virtual environments
+jb-env310/
+venv/
+.env/
+
+# Python
+__pycache__/
+*.pyc
+
+# Jupyter Book build output
+_build/
