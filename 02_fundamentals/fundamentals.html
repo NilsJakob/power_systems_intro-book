@@ -64,6 +64,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '02_fundamentals/fundamentals';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -352,7 +354,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -368,6 +372,24 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-mks-system">The MKS System</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#per-unit-system">Per-Unit System</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#base-quantities">Base Quantities</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#time-domain-and-phasors">Time Domain and Phasors</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#time-domain-waveform-and-rotating-vector-phasor">Time Domain (Waveform) and Rotating Vector (Phasor)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#result">Result:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#root-mean-square-rms">Root Mean Square (RMS)</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -379,6 +401,476 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="fundamentals">
 <h1>Fundamentals<a class="headerlink" href="#fundamentals" title="Permalink to this heading">#</a></h1>
+<p>Fundamental to electrical power systems, is to define the time aspect.</p>
+<p>We start with the generic sinusoidal function and recall Euler’s formula:</p>
+<div class="math notranslate nohighlight">
+\[
+e^{j\theta} = \cos\theta + j\sin\theta
+\]</div>
+<p>In this book, we use MKS units and IEEE standards as far as possible.</p>
+<section id="the-mks-system">
+<h2>The MKS System<a class="headerlink" href="#the-mks-system" title="Permalink to this heading">#</a></h2>
+<p>The meter–kilogram–second (MKS) system is a system of units where the fundamental units are:</p>
+<ul class="simple">
+<li><p>Length: meter (m)</p></li>
+<li><p>Mass: kilogram (kg)</p></li>
+<li><p>Time: second (s)</p></li>
+</ul>
+<p>MKS means that all physical quantities are constructed from meter, kilogram, and second, and this forms the basis of the SI units used in power systems.</p>
+<p>For example:</p>
+<div class="math notranslate nohighlight">
+\[
+1 \, V = \frac{kg \cdot m^2}{s^3 \cdot A}
+\]</div>
+<p>All physical quantities in power systems are expressed in SI units (MKS-based):</p>
+<ul class="simple">
+<li><p>Voltage: Volt</p></li>
+<li><p>Current: Ampere</p></li>
+<li><p>Power: Watt</p></li>
+<li><p>Impedance: Ohm</p></li>
+</ul>
+</section>
+<section id="per-unit-system">
+<h2>Per-Unit System<a class="headerlink" href="#per-unit-system" title="Permalink to this heading">#</a></h2>
+<p>The per-unit system normalizes MKS values by dividing by a chosen base value, producing dimensionless quantities:</p>
+<div class="math notranslate nohighlight">
+\[
+x_{pu} = \frac{x_{MKS}}{x_{base}}
+\]</div>
+<section id="base-quantities">
+<h3>Base Quantities<a class="headerlink" href="#base-quantities" title="Permalink to this heading">#</a></h3>
+<p>From the base values <span class="math notranslate nohighlight">\(S_{base}\)</span> (VA) and <span class="math notranslate nohighlight">\(V_{base}\)</span> (Volt), we can derive:</p>
+<div class="math notranslate nohighlight">
+\[
+I_{base} = \frac{S_{base}}{\sqrt{3} V_{base}}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+Z_{base} = \frac{V_{base}^2}{S_{base}}
+\]</div>
+</section>
+</section>
+<section id="time-domain-and-phasors">
+<h2>Time Domain and Phasors<a class="headerlink" href="#time-domain-and-phasors" title="Permalink to this heading">#</a></h2>
+<p>The time-domain representation of voltage can be expressed as:</p>
+<div class="math notranslate nohighlight">
+\[
+v(t) = \hat{V} \cdot \cos(\omega t)
+\]</div>
+<p>Lowercase letters (e.g., <span class="math notranslate nohighlight">\(v\)</span>) are used to represent instantaneous values that vary as a function of time (<span class="math notranslate nohighlight">\(t\)</span>), while uppercase letters (<span class="math notranslate nohighlight">\(V\)</span>) represent constant quantities.</p>
+<p>The representation of time-varying and constant quantities is not standardized in the same way as MKS, SI, and IEEE. Instead, it is based on conventions—agreements developed over time about how to express these quantities. This is also a good illustration of the difference between standards and conventions.</p>
+<p>Here:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\hat{V}\)</span> is the voltage amplitude</p></li>
+<li><p><span class="math notranslate nohighlight">\(f\)</span> is the frequency (typically 50 Hz, i.e., 50 cycles per second)</p></li>
+</ul>
+<p>In the Python script below, <code class="docutils literal notranslate"><span class="pre">V_ampl</span></code> represents the constant amplitude, while <span class="math notranslate nohighlight">\(v(t)\)</span> varies as a function of time.
+``</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="c1"># Parameters</span>
+<span class="n">V_ampl</span> <span class="o">=</span> <span class="mi">325</span>            <span class="c1"># Peak voltage [V]</span>
+<span class="n">f</span> <span class="o">=</span> <span class="mi">50</span>                 <span class="c1"># Frequency [Hz]</span>
+<span class="n">omega</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">f</span>      <span class="c1"># Angular frequency</span>
+<span class="n">theta_v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">6</span>     <span class="c1"># Phase angle (30 degrees)</span>
+
+<span class="c1"># Time vector</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+
+<span class="c1"># Voltage signal</span>
+<span class="n">v</span> <span class="o">=</span> <span class="n">V_ampl</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">omega</span> <span class="o">*</span> <span class="n">t</span> <span class="o">+</span> <span class="n">theta_v</span><span class="p">)</span>
+
+<span class="c1"># Plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Time (s)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Voltage v(t) [V]&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$v(t) = \hat</span><span class="si">{V}</span><span class="s2"> cos(ωt)$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/7c7b6c1fbc967472730a6b1c92feff5b554278defbe486bc644e3b3790094b93.png" src="../_images/7c7b6c1fbc967472730a6b1c92feff5b554278defbe486bc644e3b3790094b93.png" />
+</div>
+</div>
+<p>In power systems, it is common to describe <span class="math notranslate nohighlight">\(\cos(\omega t)\)</span>, because this represents the projection of the voltage <span class="math notranslate nohighlight">\(v\)</span> onto the cosine axis and gives the value 1 when <span class="math notranslate nohighlight">\(v(t) = 0\)</span>. At that point, <span class="math notranslate nohighlight">\(v(0)\)</span> equals the constant <span class="math notranslate nohighlight">\(V\)</span>, which is the same as the amplitude <span class="math notranslate nohighlight">\(\hat{V}\)</span>.</p>
+<p>In this way, the cosine representation describes the system under continuous operation from a steady-state perspective. The steady-state perspective is also important when the vector (<span class="math notranslate nohighlight">\(V\)</span>) rotates in the time domain and becomes a phasor representation.</p>
+</section>
+<section id="time-domain-waveform-and-rotating-vector-phasor">
+<h2>Time Domain (Waveform) and Rotating Vector (Phasor)<a class="headerlink" href="#time-domain-waveform-and-rotating-vector-phasor" title="Permalink to this heading">#</a></h2>
+<p>The phasor representation becomes particularly useful when analyzing phase shifts, for example in three-phase systems or current phase shifts caused by passive components:</p>
+<div class="math notranslate nohighlight">
+\[
+v(t) = \hat{V} \cdot \sin(\omega t) \Longleftrightarrow \bar{V} = \hat{V} \angle \theta
+\]</div>
+<p><img alt="Phasor animation" src="../_images/phasor_animation_sin.gif" /></p>
+<p>We use the notation <span class="math notranslate nohighlight">\(\bar{V}\)</span> to indicate that this is a complex number with a magnitude (amplitude <span class="math notranslate nohighlight">\(\hat{V}\)</span>) and a phase (<span class="math notranslate nohighlight">\(\theta\)</span>). The magnitude is also called the absolute value <span class="math notranslate nohighlight">\(|V|\)</span>, while the phase is the argument of the complex number.</p>
+<p>In power systems, the convention is to use the cosine representation due to the steady-state perspective discussed above.</p>
+<p><img alt="Phasor animation" src="../_images/phasor_animation_fixed.gif" /></p>
+<div class="math notranslate nohighlight">
+\[
+\Re\{e^{j\omega t}\} = \cos(\omega t)
+\]</div>
+<ul class="simple">
+<li><p>no additional phase</p></li>
+<li><p>the phasor points along the x-axis at <span class="math notranslate nohighlight">\(t = 0\)</span></p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\Im\{e^{j\omega t}\} = \sin(\omega t)
+\]</div>
+<p>However, in this case:</p>
+<ul class="simple">
+<li><p>at <span class="math notranslate nohighlight">\(t = 0\)</span>: value = 0</p></li>
+<li><p>you do not “see” the vector directly</p></li>
+</ul>
+<p>When using the real part:</p>
+<div class="math notranslate nohighlight">
+\[
+v(t) = \Re\{V e^{j\omega t}\}
+\]</div>
+<p>the relationship becomes:</p>
+<div class="math notranslate nohighlight">
+\[
+V = |V| e^{j\theta}
+\]</div>
+<p>completely direct.</p>
+<section id="result">
+<h3>Result:<a class="headerlink" href="#result" title="Permalink to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[
+v(t) = |V| \cos(\omega t + \theta)
+\]</div>
+<ul class="simple">
+<li><p>the phase <span class="math notranslate nohighlight">\(\theta\)</span> is exactly the same as in the phasor</p></li>
+<li><p>no additional shift</p></li>
+</ul>
+<p>With sine, you must write:</p>
+<div class="math notranslate nohighlight">
+\[
+v(t) = |V| \sin(\omega t + \theta)
+\]</div>
+<p>which is actually:</p>
+<div class="math notranslate nohighlight">
+\[
+= |V| \cos(\omega t + \theta - 90^\circ)
+\]</div>
+<p>that is:</p>
+<div class="math notranslate nohighlight">
+\[
+V = |V| e^{j(\theta - 90^\circ)}
+\]</div>
+<p><img alt="Phasor animation" src="../_images/complex_exponential.gif" /></p>
+</section>
+</section>
+<section id="root-mean-square-rms">
+<h2>Root Mean Square (RMS)<a class="headerlink" href="#root-mean-square-rms" title="Permalink to this heading">#</a></h2>
+<p>RMS stands for “root mean square” and represents the effective value of a signal.</p>
+<p>For an alternating voltage, a simple average cannot be used because it becomes zero. Instead, we square the signal, take the average, and then take the square root. This yields a value equivalent to the DC voltage that would produce the same power.</p>
+<p>For a sinusoidal signal:</p>
+<div class="math notranslate nohighlight">
+\[
+V_{RMS} = \frac{\hat{V}}{\sqrt{2}}
+\]</div>
+<p>When we say 230 V in a power outlet, this refers to the RMS value—that is, the value that determines how much energy is delivered.</p>
+<p>The actual waveform is:</p>
+<div class="math notranslate nohighlight">
+\[
+v(t) = 325 \sin(\omega t)
+\]</div>
+<p>For a general signal <span class="math notranslate nohighlight">\(x(t)\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+X_{RMS} = \sqrt{\frac{1}{T} \int_0^T x^2(t)\, dt}
+\]</div>
+<p>Thus, we obtain:</p>
+<div class="math notranslate nohighlight">
+\[
+V_{RMS} = \frac{\hat{V}}{\sqrt{2}}, \quad
+I_{RMS} = \frac{\hat{I}}{\sqrt{2}}
+\]</div>
+<p>The voltage we measure is 230 V, but the amplitude is:</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{V} = V \cdot \sqrt{2} = 230 \cdot \sqrt{2} \approx 325 \text{ V}
+\]</div>
+<p>The term <span class="math notranslate nohighlight">\(\cos \theta\)</span> is used to describe phase shift, and if it is known, we can directly calculate power:</p>
+<div class="math notranslate nohighlight">
+\[
+P = V_{RMS} I_{RMS} \cos\theta
+\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.animation</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">animation</span>
+
+<span class="c1"># Parameters</span>
+<span class="n">V</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="n">omega</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span>  <span class="c1"># 1 Hz</span>
+<span class="n">theta</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="c1"># Time points</span>
+<span class="n">frames</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">t_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">frames</span><span class="p">)</span>
+
+<span class="c1"># Precompute full cosine</span>
+<span class="n">v_vals</span> <span class="o">=</span> <span class="n">V</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">omega</span> <span class="o">*</span> <span class="n">t_vals</span> <span class="o">+</span> <span class="n">theta</span><span class="p">)</span>
+
+<span class="c1"># Prepare figure</span>
+<span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+
+<span class="c1"># Left plot (waveform)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Tidsdomeneprojeksjon&quot;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Tid&quot;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+
+<span class="n">line</span><span class="p">,</span> <span class="o">=</span> <span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">([],</span> <span class="p">[],</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">point</span><span class="p">,</span> <span class="o">=</span> <span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">([],</span> <span class="p">[],</span> <span class="s1">&#39;ro&#39;</span><span class="p">)</span>
+
+<span class="c1"># Right plot (phasor)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mf">1.2</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">1.2</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Roterende vektor (fasor)&quot;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+
+<span class="c1"># Animation function</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">animate</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">t_vals</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">angle</span> <span class="o">=</span> <span class="n">omega</span> <span class="o">*</span> <span class="n">t</span> <span class="o">+</span> <span class="n">theta</span>
+
+    <span class="c1"># Phasor components</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">V</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">angle</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">V</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">angle</span><span class="p">)</span>
+
+    <span class="c1"># Redraw phasor axis cleanly</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mf">1.2</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">)</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">1.2</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">)</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Roterende vektor (fasor)&quot;</span><span class="p">)</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">arrow</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">head_width</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">length_includes_head</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1"># Update waveform (NO append)</span>
+    <span class="n">line</span><span class="o">.</span><span class="n">set_data</span><span class="p">(</span><span class="n">t_vals</span><span class="p">[:</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span> <span class="n">v_vals</span><span class="p">[:</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">point</span><span class="o">.</span><span class="n">set_data</span><span class="p">([</span><span class="n">t</span><span class="p">],</span> <span class="p">[</span><span class="n">v_vals</span><span class="p">[</span><span class="n">i</span><span class="p">]])</span>
+
+    <span class="k">return</span> <span class="n">line</span><span class="p">,</span> <span class="n">point</span>
+
+<span class="c1"># Use blitting for stability</span>
+<span class="n">ani</span> <span class="o">=</span> <span class="n">animation</span><span class="o">.</span><span class="n">FuncAnimation</span><span class="p">(</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">animate</span><span class="p">,</span> <span class="n">frames</span><span class="o">=</span><span class="n">frames</span><span class="p">,</span> <span class="n">interval</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">blit</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+
+<span class="c1"># Display in notebook</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">HTML</span>
+<span class="n">HTML</span><span class="p">(</span><span class="n">ani</span><span class="o">.</span><span class="n">to_jshtml</span><span class="p">())</span>
+
+<span class="c1"># Save GIF</span>
+<span class="n">ani</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;phasor_animation_sin.gif&quot;</span><span class="p">,</span> <span class="n">writer</span><span class="o">=</span><span class="s1">&#39;pillow&#39;</span><span class="p">,</span> <span class="n">fps</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/309c9f7a3dff455e46845705abb552cf14f3a2c844241a411450adaf8b437652.png" src="../_images/309c9f7a3dff455e46845705abb552cf14f3a2c844241a411450adaf8b437652.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.animation</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">animation</span>
+
+<span class="c1"># Parameters</span>
+<span class="n">V</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="n">omega</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span>  <span class="c1"># 1 Hz</span>
+<span class="n">theta</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="c1"># Time points</span>
+<span class="n">frames</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">t_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">frames</span><span class="p">)</span>
+
+<span class="c1"># Precompute full cosine</span>
+<span class="n">v_vals</span> <span class="o">=</span> <span class="n">V</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">omega</span> <span class="o">*</span> <span class="n">t_vals</span> <span class="o">+</span> <span class="n">theta</span><span class="p">)</span>
+
+<span class="c1"># Prepare figure</span>
+<span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+
+<span class="c1"># Left plot (waveform)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Tidsdomeneprojeksjon&quot;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Tid&quot;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+
+<span class="n">line</span><span class="p">,</span> <span class="o">=</span> <span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">([],</span> <span class="p">[],</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">point</span><span class="p">,</span> <span class="o">=</span> <span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">([],</span> <span class="p">[],</span> <span class="s1">&#39;ro&#39;</span><span class="p">)</span>
+
+<span class="c1"># Right plot (phasor)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mf">1.2</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">1.2</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Roterende vektor (fasor)&quot;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+
+<span class="c1"># Animation function</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">animate</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">t_vals</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">angle</span> <span class="o">=</span> <span class="n">omega</span> <span class="o">*</span> <span class="n">t</span> <span class="o">+</span> <span class="n">theta</span>
+
+    <span class="c1"># Phasor components</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">V</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">angle</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">V</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">angle</span><span class="p">)</span>
+
+    <span class="c1"># Redraw phasor axis cleanly</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mf">1.2</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">)</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">1.2</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">)</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Roterende vektor (fasor)&quot;</span><span class="p">)</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">arrow</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">head_width</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">length_includes_head</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1"># Update waveform (NO append)</span>
+    <span class="n">line</span><span class="o">.</span><span class="n">set_data</span><span class="p">(</span><span class="n">t_vals</span><span class="p">[:</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span> <span class="n">v_vals</span><span class="p">[:</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">point</span><span class="o">.</span><span class="n">set_data</span><span class="p">([</span><span class="n">t</span><span class="p">],</span> <span class="p">[</span><span class="n">v_vals</span><span class="p">[</span><span class="n">i</span><span class="p">]])</span>
+
+    <span class="k">return</span> <span class="n">line</span><span class="p">,</span> <span class="n">point</span>
+
+<span class="c1"># Use blitting for stability</span>
+<span class="n">ani</span> <span class="o">=</span> <span class="n">animation</span><span class="o">.</span><span class="n">FuncAnimation</span><span class="p">(</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">animate</span><span class="p">,</span> <span class="n">frames</span><span class="o">=</span><span class="n">frames</span><span class="p">,</span> <span class="n">interval</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">blit</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+
+<span class="c1"># Display in notebook</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">HTML</span>
+<span class="n">HTML</span><span class="p">(</span><span class="n">ani</span><span class="o">.</span><span class="n">to_jshtml</span><span class="p">())</span>
+
+<span class="c1"># Save GIF</span>
+<span class="n">ani</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;phasor_animation_fixed.gif&quot;</span><span class="p">,</span> <span class="n">writer</span><span class="o">=</span><span class="s1">&#39;pillow&#39;</span><span class="p">,</span> <span class="n">fps</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/66fea2de6dfd936b14a866b0ff1bb71a5408d2fbe4156bd634eb3996091c00b4.png" src="../_images/66fea2de6dfd936b14a866b0ff1bb71a5408d2fbe4156bd634eb3996091c00b4.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.animation</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">animation</span>
+
+<span class="c1"># Parametere</span>
+<span class="n">V</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="n">omega</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span>
+<span class="n">theta</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="n">frames</span> <span class="o">=</span> <span class="mi">120</span>
+<span class="n">t_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">frames</span><span class="p">)</span>
+
+<span class="c1"># Kompleks eksponential</span>
+<span class="n">z_vals</span> <span class="o">=</span> <span class="n">V</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mi">1</span><span class="n">j</span> <span class="o">*</span> <span class="p">(</span><span class="n">omega</span> <span class="o">*</span> <span class="n">t_vals</span> <span class="o">+</span> <span class="n">theta</span><span class="p">))</span>
+
+<span class="c1"># Re og Im</span>
+<span class="n">cos_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">z_vals</span><span class="p">)</span>
+<span class="n">sin_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">imag</span><span class="p">(</span><span class="n">z_vals</span><span class="p">)</span>
+
+<span class="c1"># Figur</span>
+<span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax_complex</span><span class="p">,</span> <span class="n">ax_time</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+<span class="c1"># --- KOMPLEKSPLAN ---</span>
+<span class="n">ax_complex</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mf">1.2</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">)</span>
+<span class="n">ax_complex</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">1.2</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">)</span>
+<span class="n">ax_complex</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+<span class="n">ax_complex</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Kompleks plan: $e^{j</span><span class="se">\\</span><span class="s2">omega t}$&quot;</span><span class="p">)</span>
+<span class="n">ax_complex</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+
+<span class="c1"># --- TIDSPLOTT ---</span>
+<span class="n">ax_time</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">ax_time</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">)</span>
+<span class="n">ax_time</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Re{ } = cos, Im{ } = sin&quot;</span><span class="p">)</span>
+<span class="n">ax_time</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Tid&quot;</span><span class="p">)</span>
+<span class="n">ax_time</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+
+<span class="n">line_cos</span><span class="p">,</span> <span class="o">=</span> <span class="n">ax_time</span><span class="o">.</span><span class="n">plot</span><span class="p">([],</span> <span class="p">[],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Re → cos&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span>
+<span class="n">line_sin</span><span class="p">,</span> <span class="o">=</span> <span class="n">ax_time</span><span class="o">.</span><span class="n">plot</span><span class="p">([],</span> <span class="p">[],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Im → sin&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">)</span>
+
+<span class="n">point_cos</span><span class="p">,</span> <span class="o">=</span> <span class="n">ax_time</span><span class="o">.</span><span class="n">plot</span><span class="p">([],</span> <span class="p">[],</span> <span class="s1">&#39;bo&#39;</span><span class="p">)</span>
+<span class="n">point_sin</span><span class="p">,</span> <span class="o">=</span> <span class="n">ax_time</span><span class="o">.</span><span class="n">plot</span><span class="p">([],</span> <span class="p">[],</span> <span class="s1">&#39;go&#39;</span><span class="p">)</span>
+
+<span class="n">ax_time</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">animate</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">t_vals</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">z</span> <span class="o">=</span> <span class="n">z_vals</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">imag</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+
+    <span class="c1"># --- KOMPLEKSPLAN ---</span>
+    <span class="n">ax_complex</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+    <span class="n">ax_complex</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mf">1.2</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">)</span>
+    <span class="n">ax_complex</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">1.2</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">)</span>
+    <span class="n">ax_complex</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+    <span class="n">ax_complex</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$e^{j\omega t} = \cos(\omega t) + j\sin(\omega t)$&quot;</span><span class="p">)</span>
+    <span class="n">ax_complex</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+
+    <span class="n">ax_complex</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">ax_complex</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="c1"># Vektor = e^{jωt}</span>
+    <span class="n">ax_complex</span><span class="o">.</span><span class="n">arrow</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span>
+                     <span class="n">head_width</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>
+                     <span class="n">length_includes_head</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                     <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Projeksjoner</span>
+    <span class="n">ax_complex</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">y</span><span class="p">],</span> <span class="s1">&#39;b--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Re&quot;</span><span class="p">)</span>
+    <span class="n">ax_complex</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">x</span><span class="p">],</span> <span class="p">[</span><span class="n">y</span><span class="p">,</span> <span class="n">y</span><span class="p">],</span> <span class="s1">&#39;g--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Im&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Sirkel (unit circle)</span>
+    <span class="n">theta_circle</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+    <span class="n">ax_complex</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta_circle</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta_circle</span><span class="p">),</span> <span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1"># --- TIDSPLOTT ---</span>
+    <span class="n">line_cos</span><span class="o">.</span><span class="n">set_data</span><span class="p">(</span><span class="n">t_vals</span><span class="p">[:</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span> <span class="n">cos_vals</span><span class="p">[:</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">line_sin</span><span class="o">.</span><span class="n">set_data</span><span class="p">(</span><span class="n">t_vals</span><span class="p">[:</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span> <span class="n">sin_vals</span><span class="p">[:</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
+
+    <span class="n">point_cos</span><span class="o">.</span><span class="n">set_data</span><span class="p">([</span><span class="n">t</span><span class="p">],</span> <span class="p">[</span><span class="n">cos_vals</span><span class="p">[</span><span class="n">i</span><span class="p">]])</span>
+    <span class="n">point_sin</span><span class="o">.</span><span class="n">set_data</span><span class="p">([</span><span class="n">t</span><span class="p">],</span> <span class="p">[</span><span class="n">sin_vals</span><span class="p">[</span><span class="n">i</span><span class="p">]])</span>
+
+    <span class="k">return</span> <span class="n">line_cos</span><span class="p">,</span> <span class="n">line_sin</span><span class="p">,</span> <span class="n">point_cos</span><span class="p">,</span> <span class="n">point_sin</span>
+
+<span class="n">ani</span> <span class="o">=</span> <span class="n">animation</span><span class="o">.</span><span class="n">FuncAnimation</span><span class="p">(</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">animate</span><span class="p">,</span> <span class="n">frames</span><span class="o">=</span><span class="n">frames</span><span class="p">,</span> <span class="n">interval</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">blit</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">HTML</span>
+<span class="n">HTML</span><span class="p">(</span><span class="n">ani</span><span class="o">.</span><span class="n">to_jshtml</span><span class="p">())</span>
+
+<span class="n">ani</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;complex_exponential.gif&quot;</span><span class="p">,</span> <span class="n">writer</span><span class="o">=</span><span class="s1">&#39;pillow&#39;</span><span class="p">,</span> <span class="n">fps</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/60049cfba171701695c909565a6492c44aac444516fbde2d6f070a9dffde2cf5.png" src="../_images/60049cfba171701695c909565a6492c44aac444516fbde2d6f070a9dffde2cf5.png" />
+</div>
+</div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -435,6 +927,31 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-mks-system">The MKS System</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#per-unit-system">Per-Unit System</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#base-quantities">Base Quantities</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#time-domain-and-phasors">Time Domain and Phasors</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#time-domain-waveform-and-rotating-vector-phasor">Time Domain (Waveform) and Rotating Vector (Phasor)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#result">Result:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#root-mean-square-rms">Root Mean Square (RMS)</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
