@@ -13,6 +13,7 @@ parts:
   - caption: Fundamentals
     chapters:
       - file: 02_fundamentals/fundamentals
+      - file: 03_circuits/representations
 
 
   - caption: Referanser
