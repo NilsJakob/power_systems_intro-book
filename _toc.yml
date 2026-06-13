@@ -6,7 +6,7 @@ options:
 
 parts:
 
-  - caption: FundamentalsIntroduction
+  - caption: Introduction
     chapters:
       - file: 01_introduction/introduction
 
