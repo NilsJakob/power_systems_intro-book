@@ -2,10 +2,20 @@ title: Electrical Power Systems Introduction
 author: Nils Jakob Johannesen
 copyright: "2026"
 
+
 execute:
   execute_notebooks: false
 
-html_theme: sphinx_book_theme
+only_build_toc_files: true
+
+html:
+  theme: sphinx_book_theme
+
+sphinx:
+  config:
+    html_css_files:
+      - custom.css
+
 
 html_theme_options:
   show_prev_next: false
