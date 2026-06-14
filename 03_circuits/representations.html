@@ -403,50 +403,9 @@ document.write(`
 <p>To calculate the current in the figure below it is solved in the time-domain using differential equations:</p>
 <div class="math notranslate nohighlight">
 \[ Ri(t) + L\frac{di}{dt} +\frac{1}{C}\int i(t) dt = \sqrt{2} V cos(\omega t)\]</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">schemdraw</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">schemdraw.elements</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">elm</span>
-
-<span class="k">with</span> <span class="n">schemdraw</span><span class="o">.</span><span class="n">Drawing</span><span class="p">()</span> <span class="k">as</span> <span class="n">d</span><span class="p">:</span>
-
-    <span class="c1"># --- LEFT SIDE ---</span>
-    <span class="n">d</span> <span class="o">+=</span> <span class="n">elm</span><span class="o">.</span><span class="n">Line</span><span class="p">()</span><span class="o">.</span><span class="n">up</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-    <span class="n">d</span> <span class="o">+=</span> <span class="n">elm</span><span class="o">.</span><span class="n">SourceSin</span><span class="p">()</span><span class="o">.</span><span class="n">up</span><span class="p">()</span><span class="o">.</span><span class="n">length</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-    <span class="n">d</span> <span class="o">+=</span> <span class="n">elm</span><span class="o">.</span><span class="n">Line</span><span class="p">()</span><span class="o">.</span><span class="n">up</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-
-    <span class="c1"># Save top-left position</span>
-    <span class="n">top_left</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">here</span>
-
-    <span class="c1"># --- TOP WIRE ---</span>
-    <span class="n">d</span> <span class="o">+=</span> <span class="n">elm</span><span class="o">.</span><span class="n">Line</span><span class="p">()</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
-
-    <span class="c1"># --- RIGHT SIDE (direct continuation — THIS fixes alignment) ---</span>
-    <span class="n">d</span> <span class="o">+=</span> <span class="n">elm</span><span class="o">.</span><span class="n">Inductor</span><span class="p">()</span><span class="o">.</span><span class="n">down</span><span class="p">()</span><span class="o">.</span><span class="n">label</span><span class="p">(</span><span class="s1">&#39;L&#39;</span><span class="p">)</span>
-    <span class="n">d</span> <span class="o">+=</span> <span class="n">elm</span><span class="o">.</span><span class="n">Resistor</span><span class="p">()</span><span class="o">.</span><span class="n">down</span><span class="p">()</span><span class="o">.</span><span class="n">label</span><span class="p">(</span><span class="s1">&#39;R&#39;</span><span class="p">)</span>
-    <span class="n">d</span> <span class="o">+=</span> <span class="n">elm</span><span class="o">.</span><span class="n">Capacitor</span><span class="p">()</span><span class="o">.</span><span class="n">down</span><span class="p">()</span><span class="o">.</span><span class="n">label</span><span class="p">(</span><span class="s1">&#39;C&#39;</span><span class="p">)</span>
-
-    <span class="c1"># --- BOTTOM WIRE ---</span>
-    <span class="n">d</span> <span class="o">+=</span> <span class="n">elm</span><span class="o">.</span><span class="n">Line</span><span class="p">()</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
-
-    <span class="c1"># --- CLOSE LOOP ---</span>
-    <span class="n">d</span> <span class="o">+=</span> <span class="n">elm</span><span class="o">.</span><span class="n">Line</span><span class="p">()</span><span class="o">.</span><span class="n">up</span><span class="p">()</span>
-
-    <span class="c1"># --- CURRENT ARROW (placed AFTER geometry) ---</span>
-    <span class="n">d</span> <span class="o">+=</span> <span class="n">elm</span><span class="o">.</span><span class="n">Arrow</span><span class="p">()</span><span class="o">.</span><span class="n">at</span><span class="p">((</span><span class="n">top_left</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mf">1.5</span><span class="p">,</span> <span class="n">top_left</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mf">0.45</span><span class="p">))</span><span class="o">.</span><span class="n">right</span><span class="p">()</span><span class="o">.</span><span class="n">length</span><span class="p">(</span><span class="mf">0.8</span><span class="p">)</span>
-    <span class="n">d</span> <span class="o">+=</span> <span class="n">elm</span><span class="o">.</span><span class="n">Label</span><span class="p">()</span><span class="o">.</span><span class="n">at</span><span class="p">((</span><span class="n">top_left</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mf">1.9</span><span class="p">,</span> <span class="n">top_left</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mf">0.9</span><span class="p">))</span><span class="o">.</span><span class="n">label</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$i(t)$&#39;</span><span class="p">)</span>
-
-    <span class="c1"># --- SOURCE LABELS ---</span>
-    <span class="n">d</span> <span class="o">+=</span> <span class="n">elm</span><span class="o">.</span><span class="n">Label</span><span class="p">()</span><span class="o">.</span><span class="n">at</span><span class="p">((</span><span class="o">-</span><span class="mf">2.8</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span><span class="o">.</span><span class="n">label</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$v(t)=\sqrt</span><span class="si">{2}</span><span class="s1">V\cos(\omega t)$&#39;</span><span class="p">)</span>
-    <span class="n">d</span> <span class="o">+=</span> <span class="n">elm</span><span class="o">.</span><span class="n">Label</span><span class="p">()</span><span class="o">.</span><span class="n">at</span><span class="p">((</span><span class="o">-</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">3.75</span><span class="p">))</span><span class="o">.</span><span class="n">label</span><span class="p">(</span><span class="s1">&#39;+&#39;</span><span class="p">)</span>
-    <span class="n">d</span> <span class="o">+=</span> <span class="n">elm</span><span class="o">.</span><span class="n">Label</span><span class="p">()</span><span class="o">.</span><span class="n">at</span><span class="p">((</span><span class="o">-</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">2.25</span><span class="p">))</span><span class="o">.</span><span class="n">label</span><span class="p">(</span><span class="s1">&#39;−&#39;</span><span class="p">)</span>
-
-    <span class="n">d</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
+<div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<img alt="../_images/ee27234ce97470d70b466c8681b1d07942103f92db622274c7bed238ed474aac.svg" src="../_images/ee27234ce97470d70b466c8681b1d07942103f92db622274c7bed238ed474aac.svg" /></div>
+<img alt="../_images/fa0698fd3762b7c6bc5e5af6122d1bad07519d1d8a1d4e53ba6e9cc579a97f8b.svg" src="../_images/fa0698fd3762b7c6bc5e5af6122d1bad07519d1d8a1d4e53ba6e9cc579a97f8b.svg" /></div>
 </div>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="phasor-convertions">
@@ -454,100 +413,17 @@ document.write(`
 <p>We can redraw the circuit using phasors; the inductance L is represented by <span class="math notranslate nohighlight">\(j\omega L\)</span> and capacitance C by <span class="math notranslate nohighlight">\(j(\frac{1}{-\omega C})\)</span></p>
 <div class="math notranslate nohighlight">
 \[ R + jX_L - jX_C\]</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">schemdraw</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">schemdraw.elements</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">elm</span>
-
-<span class="k">with</span> <span class="n">schemdraw</span><span class="o">.</span><span class="n">Drawing</span><span class="p">()</span> <span class="k">as</span> <span class="n">d</span><span class="p">:</span>
-
-    <span class="c1"># --- LEFT SIDE ---</span>
-    <span class="n">d</span> <span class="o">+=</span> <span class="n">elm</span><span class="o">.</span><span class="n">Line</span><span class="p">()</span><span class="o">.</span><span class="n">up</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-    <span class="n">d</span> <span class="o">+=</span> <span class="n">elm</span><span class="o">.</span><span class="n">SourceSin</span><span class="p">()</span><span class="o">.</span><span class="n">up</span><span class="p">()</span><span class="o">.</span><span class="n">length</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-    <span class="n">d</span> <span class="o">+=</span> <span class="n">elm</span><span class="o">.</span><span class="n">Line</span><span class="p">()</span><span class="o">.</span><span class="n">up</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-
-    <span class="c1"># Save top-left position</span>
-    <span class="n">top_left</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">here</span>
-
-    <span class="c1"># --- TOP WIRE ---</span>
-    <span class="n">d</span> <span class="o">+=</span> <span class="n">elm</span><span class="o">.</span><span class="n">Line</span><span class="p">()</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
-
-    <span class="c1"># --- RIGHT SIDE (direct continuation — THIS fixes alignment) ---</span>
-    <span class="n">d</span> <span class="o">+=</span> <span class="n">elm</span><span class="o">.</span><span class="n">Inductor</span><span class="p">()</span><span class="o">.</span><span class="n">down</span><span class="p">()</span><span class="o">.</span><span class="n">label</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$j\omega L = jX_L$&#39;</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;bottom&#39;</span><span class="p">)</span>
-    <span class="n">d</span> <span class="o">+=</span> <span class="n">elm</span><span class="o">.</span><span class="n">Resistor</span><span class="p">()</span><span class="o">.</span><span class="n">down</span><span class="p">()</span><span class="o">.</span><span class="n">label</span><span class="p">(</span><span class="s1">&#39;R&#39;</span><span class="p">)</span>
-    <span class="n">d</span> <span class="o">+=</span> <span class="n">elm</span><span class="o">.</span><span class="n">Capacitor</span><span class="p">()</span><span class="o">.</span><span class="n">down</span><span class="p">()</span><span class="o">.</span><span class="n">label</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$-j (\frac</span><span class="si">{1}</span><span class="s1">{\omega C}) = jX_C$&#39;</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;bottom&#39;</span><span class="p">)</span>
-
-    <span class="c1"># --- BOTTOM WIRE ---</span>
-    <span class="n">d</span> <span class="o">+=</span> <span class="n">elm</span><span class="o">.</span><span class="n">Line</span><span class="p">()</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
-
-    <span class="c1"># --- CLOSE LOOP ---</span>
-    <span class="n">d</span> <span class="o">+=</span> <span class="n">elm</span><span class="o">.</span><span class="n">Line</span><span class="p">()</span><span class="o">.</span><span class="n">up</span><span class="p">()</span>
-
-    <span class="c1"># --- CURRENT ARROW (placed AFTER geometry) ---</span>
-    <span class="n">d</span> <span class="o">+=</span> <span class="n">elm</span><span class="o">.</span><span class="n">Arrow</span><span class="p">()</span><span class="o">.</span><span class="n">at</span><span class="p">((</span><span class="n">top_left</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mf">1.5</span><span class="p">,</span> <span class="n">top_left</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mf">0.45</span><span class="p">))</span><span class="o">.</span><span class="n">right</span><span class="p">()</span><span class="o">.</span><span class="n">length</span><span class="p">(</span><span class="mf">0.8</span><span class="p">)</span>
-    <span class="n">d</span> <span class="o">+=</span> <span class="n">elm</span><span class="o">.</span><span class="n">Label</span><span class="p">()</span><span class="o">.</span><span class="n">at</span><span class="p">((</span><span class="n">top_left</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mf">1.9</span><span class="p">,</span> <span class="n">top_left</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mf">0.9</span><span class="p">))</span><span class="o">.</span><span class="n">label</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\bar</span><span class="si">{I}</span><span class="s1">$&#39;</span><span class="p">)</span>
-
-    <span class="c1"># --- SOURCE LABELS ---</span>
-    <span class="n">d</span> <span class="o">+=</span> <span class="n">elm</span><span class="o">.</span><span class="n">Label</span><span class="p">()</span><span class="o">.</span><span class="n">at</span><span class="p">((</span><span class="o">-</span><span class="mf">2.8</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span><span class="o">.</span><span class="n">label</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\bar</span><span class="si">{V}</span><span class="s1">= V\angle0$&#39;</span><span class="p">)</span>
-    <span class="n">d</span> <span class="o">+=</span> <span class="n">elm</span><span class="o">.</span><span class="n">Label</span><span class="p">()</span><span class="o">.</span><span class="n">at</span><span class="p">((</span><span class="o">-</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">3.75</span><span class="p">))</span><span class="o">.</span><span class="n">label</span><span class="p">(</span><span class="s1">&#39;+&#39;</span><span class="p">)</span>
-    <span class="n">d</span> <span class="o">+=</span> <span class="n">elm</span><span class="o">.</span><span class="n">Label</span><span class="p">()</span><span class="o">.</span><span class="n">at</span><span class="p">((</span><span class="o">-</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">2.25</span><span class="p">))</span><span class="o">.</span><span class="n">label</span><span class="p">(</span><span class="s1">&#39;−&#39;</span><span class="p">)</span>
-
-    <span class="n">d</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
+<div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<img alt="../_images/08c0b93b694b9ab0a3cc82d0cfc99c55585641b59e3bd0a3425323a38da6f338.svg" src="../_images/08c0b93b694b9ab0a3cc82d0cfc99c55585641b59e3bd0a3425323a38da6f338.svg" /></div>
+<img alt="../_images/d0a4e73612b2b8764ccc12f71aa2f2307be239c3c82fb70a4a6f7f8da59a600b.svg" src="../_images/d0a4e73612b2b8764ccc12f71aa2f2307be239c3c82fb70a4a6f7f8da59a600b.svg" /></div>
 </div>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="impedance-triangle">
 <h1>Impedance triangle<a class="headerlink" href="#impedance-triangle" title="Permalink to this heading">#</a></h1>
 <p>The impedance triangle illustrates the effect of inductance and capacitance on the impedance</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">schemdraw</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">schemdraw.elements</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">elm</span>
-
-<span class="k">with</span> <span class="n">schemdraw</span><span class="o">.</span><span class="n">Drawing</span><span class="p">()</span> <span class="k">as</span> <span class="n">d</span><span class="p">:</span>
-
-    <span class="n">origin</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-
-    <span class="n">R</span> <span class="o">=</span> <span class="mi">3</span>
-    <span class="n">XL</span> <span class="o">=</span> <span class="mf">3.5</span>   <span class="c1"># full inductive height</span>
-    <span class="n">XC</span> <span class="o">=</span> <span class="mf">1.5</span>   <span class="c1"># capacitive subtraction</span>
-    <span class="n">X</span> <span class="o">=</span> <span class="n">XL</span> <span class="o">-</span> <span class="n">XC</span>  <span class="c1"># net (Z height)</span>
-
-    <span class="c1"># --- Axes ---</span>
-    <span class="n">d</span> <span class="o">+=</span> <span class="n">elm</span><span class="o">.</span><span class="n">Arrow</span><span class="p">()</span><span class="o">.</span><span class="n">at</span><span class="p">(</span><span class="n">origin</span><span class="p">)</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">label</span><span class="p">(</span><span class="s1">&#39;Re&#39;</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">)</span>
-    <span class="n">d</span> <span class="o">+=</span> <span class="n">elm</span><span class="o">.</span><span class="n">Arrow</span><span class="p">()</span><span class="o">.</span><span class="n">at</span><span class="p">(</span><span class="n">origin</span><span class="p">)</span><span class="o">.</span><span class="n">up</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">label</span><span class="p">(</span><span class="s1">&#39;Im&#39;</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">)</span>
-    <span class="n">d</span> <span class="o">+=</span> <span class="n">elm</span><span class="o">.</span><span class="n">Label</span><span class="p">()</span><span class="o">.</span><span class="n">at</span><span class="p">((</span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3</span><span class="p">))</span><span class="o">.</span><span class="n">label</span><span class="p">(</span><span class="s1">&#39;0&#39;</span><span class="p">)</span>
-
-    <span class="c1"># --- Base (R) ---</span>
-    <span class="n">d</span> <span class="o">+=</span> <span class="n">elm</span><span class="o">.</span><span class="n">Line</span><span class="p">()</span><span class="o">.</span><span class="n">at</span><span class="p">(</span><span class="n">origin</span><span class="p">)</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="n">R</span><span class="p">)</span><span class="o">.</span><span class="n">label</span><span class="p">(</span><span class="s1">&#39;R&#39;</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;bottom&#39;</span><span class="p">)</span>
-
-    <span class="c1"># --- Z vertical (net reactance) ---</span>
-    <span class="n">d</span> <span class="o">+=</span> <span class="n">elm</span><span class="o">.</span><span class="n">Line</span><span class="p">()</span><span class="o">.</span><span class="n">up</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-
-    <span class="n">z_tip</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">here</span>  <span class="c1"># (R, X)</span>
-
-    <span class="c1"># --- Hypotenuse ---</span>
-    <span class="n">d</span> <span class="o">+=</span> <span class="n">elm</span><span class="o">.</span><span class="n">Line</span><span class="p">()</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">origin</span><span class="p">)</span><span class="o">.</span><span class="n">label</span><span class="p">(</span><span class="s1">&#39;Z&#39;</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">)</span>
-
-    <span class="c1"># --- jXL (goes ABOVE Z tip) ---</span>
-    <span class="n">d</span> <span class="o">+=</span> <span class="n">elm</span><span class="o">.</span><span class="n">Arrow</span><span class="p">()</span><span class="o">.</span><span class="n">at</span><span class="p">((</span><span class="n">R</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span><span class="o">.</span><span class="n">up</span><span class="p">(</span><span class="n">XL</span><span class="p">)</span><span class="o">.</span><span class="n">label</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$jX_L$&#39;</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;bottom&#39;</span><span class="p">)</span>
-
-    
-    <span class="n">offset</span> <span class="o">=</span> <span class="mf">0.3</span>  <span class="c1"># small horizontal shift to the left</span>
-
-    <span class="n">d</span> <span class="o">+=</span> <span class="n">elm</span><span class="o">.</span><span class="n">Arrow</span><span class="p">()</span><span class="o">.</span><span class="n">at</span><span class="p">((</span><span class="n">R</span> <span class="o">-</span> <span class="n">offset</span><span class="p">,</span> <span class="n">XL</span><span class="p">))</span><span class="o">.</span><span class="n">down</span><span class="p">(</span><span class="n">XC</span><span class="p">)</span><span class="o">.</span><span class="n">label</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$-jX_C$&#39;</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">)</span>
-
-
-    <span class="n">d</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
+<div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<img alt="../_images/e87636faac72458cfcd34be1a245b49bd69b4cb45c1684bc08ac6f3e316146f9.svg" src="../_images/e87636faac72458cfcd34be1a245b49bd69b4cb45c1684bc08ac6f3e316146f9.svg" /></div>
+<img alt="../_images/7c29cda453a9e5aad43a88b3660666ff7405b070899f5b39da5c82268d2c9b51.svg" src="../_images/7c29cda453a9e5aad43a88b3660666ff7405b070899f5b39da5c82268d2c9b51.svg" /></div>
 </div>
 </section>
 
