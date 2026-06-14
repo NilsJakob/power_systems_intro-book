@@ -1,4 +1,5 @@
 # Virtual environments
+jb-env/
 jb-env310/
 venv/
 .env/
