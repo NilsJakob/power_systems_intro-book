@@ -10,6 +10,7 @@ parts:
     chapters:
       - file: 01_introduction/introduction
       - file: 01_introduction/power_system_data
+      - file: assignments/A1_power_system_data
 
   - caption: Fundamentals
     chapters:
