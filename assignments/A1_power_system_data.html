@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Basic represantations &#8212; Electrical Power Systems Introduction</title>
+    <title>Assignment A0: Power System Data (Norway) &#8212; Electrical Power Systems Introduction</title>
   
   
   
@@ -66,11 +66,11 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = '03_circuits/representations';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'assignments/A1_power_system_data';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Three-Phase Circuits" href="../04_threephase/threephase.html" />
-    <link rel="prev" title="Fundamentals" href="../02_fundamentals/fundamentals.html" />
+    <link rel="next" title="Fundamentals" href="../02_fundamentals/fundamentals.html" />
+    <link rel="prev" title="Power System Data" href="../01_introduction/power_system_data.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -172,15 +172,15 @@ const thebe_selector_output = ".output, .cell_output"
             </li>
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction</span></p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../01_introduction/introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../01_introduction/power_system_data.html">Power System Data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../assignments/A1_power_system_data.html">Assignment A0: Power System Data (Norway)</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Assignment A0: Power System Data (Norway)</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Fundamentals</span></p>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../02_fundamentals/fundamentals.html">Fundamentals</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Basic represantations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_circuits/representations.html">Basic represantations</a></li>
 
 
 <li class="toctree-l1"><a class="reference internal" href="../04_threephase/threephase.html">Three-Phase Circuits</a></li>
@@ -259,7 +259,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/NilsJakob/dynamiske_kraftnett-book2/issues/new?title=Issue%20on%20page%20%2F03_circuits/representations.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/NilsJakob/dynamiske_kraftnett-book2/issues/new?title=Issue%20on%20page%20%2Fassignments/A1_power_system_data.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -289,7 +289,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../_sources/03_circuits/representations.ipynb" target="_blank"
+      <li><a href="../_sources/assignments/A1_power_system_data.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -373,7 +373,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Basic represantations</h1>
+    <h1>Assignment A0: Power System Data (Norway)</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -383,11 +383,14 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Basic represantations</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#phasor-convertions">Phasor convertions</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#impedance-triangle">Impedance triangle</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning objectives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#given-data-2025">Given Data (2025)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#q1-power-balance">Q1: Power balance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#q2-renewable-share">Q2: Renewable share</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#q3-hydropower-production">Q3: Hydropower production</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#q4-non-renewable-share">Q4: Non-renewable share</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#q5-wind-power-production">Q5: Wind power production</a></li>
 </ul>
-
             </nav>
         </div>
     </div>
@@ -398,35 +401,208 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="basic-represantations">
-<h1>Basic represantations<a class="headerlink" href="#basic-represantations" title="Permalink to this heading">#</a></h1>
-<p>Knowing the angular freqency, <span class="math notranslate nohighlight">\(\omega\)</span>, a phasor can be re-transformed into the time-domain.</p>
-<p>Phasors lets us convert differential equations into algebraic equations using complex variables.</p>
-<p>To calculate the current in the figure below it is solved in the time-domain using differential equations:</p>
-<div class="math notranslate nohighlight">
-\[ Ri(t) + L\frac{di}{dt} +\frac{1}{C}\int i(t) dt = \sqrt{2} V cos(\omega t)\]</div>
-<div class="cell tag_remove-input docutils container">
-<div class="cell_output docutils container">
-<img alt="../_images/ec4ed5c729a1101919364141c0f985906edf5c7aa962c6e81ba68ff3d3a2f957.svg" src="../_images/ec4ed5c729a1101919364141c0f985906edf5c7aa962c6e81ba68ff3d3a2f957.svg" /></div>
+  <p>Before you turn this problem in, make sure everything runs as expected. First, <strong>restart the kernel</strong> (in the menubar, select Kernel <span class="math notranslate nohighlight">\(\rightarrow\)</span> Restart) and then <strong>run all cells</strong> (in the menubar, select Cell <span class="math notranslate nohighlight">\(\rightarrow\)</span> Run All).</p>
+<p>Make sure you fill in any place that says <code class="docutils literal notranslate"><span class="pre">YOUR</span> <span class="pre">CODE</span> <span class="pre">HERE</span></code> or “YOUR ANSWER HERE”, as well as your name and collaborators below:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">NAME</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+<span class="n">COLLABORATORS</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="assignment-a0-power-system-data-norway">
+<h1>Assignment A0: Power System Data (Norway)<a class="headerlink" href="#assignment-a0-power-system-data-norway" title="Permalink to this heading">#</a></h1>
+<p>This assignment is based on real data from the Norwegian power system.</p>
+<section id="learning-objectives">
+<h2>Learning objectives<a class="headerlink" href="#learning-objectives" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Interpret system-level energy data (TWh)</p></li>
+<li><p>Perform basic calculations</p></li>
+<li><p>Understand energy mix and surplus</p></li>
+<li><p>Reflect on system implications</p></li>
+</ul>
+</section>
+<section id="given-data-2025">
+<h2>Given Data (2025)<a class="headerlink" href="#given-data-2025" title="Permalink to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Variable</p></th>
+<th class="head"><p>Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Production</p></td>
+<td><p>162 TWh</p></td>
+</tr>
+<tr class="row-odd"><td><p>Consumption</p></td>
+<td><p>139 TWh</p></td>
+</tr>
+<tr class="row-even"><td><p>Hydropower share</p></td>
+<td><p>90%</p></td>
+</tr>
+<tr class="row-odd"><td><p>Wind power share</p></td>
+<td><p>9%</p></td>
+</tr>
+<tr class="row-even"><td><p>Solar share</p></td>
+<td><p>0.2%</p></td>
+</tr>
+<tr class="row-odd"><td><p>Thermal share</p></td>
+<td><p>1%</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Data provided</span>
+<span class="n">production</span> <span class="o">=</span> <span class="mi">162</span>
+<span class="n">consumption</span> <span class="o">=</span> <span class="mi">139</span>
+
+<span class="n">hydro_share</span> <span class="o">=</span> <span class="mf">0.90</span>
+<span class="n">wind_share</span> <span class="o">=</span> <span class="mf">0.09</span>
+<span class="n">solar_share</span> <span class="o">=</span> <span class="mf">0.002</span>
+<span class="n">thermal_share</span> <span class="o">=</span> <span class="mf">0.01</span>
+</pre></div>
+</div>
+</div>
 </div>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="phasor-convertions">
-<h1>Phasor convertions<a class="headerlink" href="#phasor-convertions" title="Permalink to this heading">#</a></h1>
-<p>We can redraw the circuit using phasors; the inductance L is represented by <span class="math notranslate nohighlight">\(j\omega L\)</span> and capacitance C by <span class="math notranslate nohighlight">\(j(\frac{1}{-\omega C})\)</span></p>
-<div class="math notranslate nohighlight">
-\[ R + jX_L - jX_C\]</div>
-<div class="cell tag_remove-input docutils container">
-<div class="cell_output docutils container">
-<img alt="../_images/75b0c0ed141e3386d2b3c857aaafa3bf260ed0390e1169384e3b4ec0288bbcd5.svg" src="../_images/75b0c0ed141e3386d2b3c857aaafa3bf260ed0390e1169384e3b4ec0288bbcd5.svg" /></div>
+<section id="q1-power-balance">
+<h2>Q1: Power balance<a class="headerlink" href="#q1-power-balance" title="Permalink to this heading">#</a></h2>
+<p>Compute the power surplus:</p>
+<p>Surplus = Production − Consumption</p>
+<p>Return the result in TWh.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># YOUR CODE HERE</span>
+<span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># SOLUTION</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TEST</span>
+</pre></div>
+</div>
+</div>
 </div>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="impedance-triangle">
-<h1>Impedance triangle<a class="headerlink" href="#impedance-triangle" title="Permalink to this heading">#</a></h1>
-<p>The impedance triangle illustrates the effect of inductance and capacitance on the impedance</p>
-<div class="cell tag_remove-input docutils container">
-<div class="cell_output docutils container">
-<img alt="../_images/3ba574bbbb3b41631ebab4b6731f662d5192411ca8953f58ae64bcaf874fc070.svg" src="../_images/3ba574bbbb3b41631ebab4b6731f662d5192411ca8953f58ae64bcaf874fc070.svg" /></div>
+<section id="q2-renewable-share">
+<h2>Q2: Renewable share<a class="headerlink" href="#q2-renewable-share" title="Permalink to this heading">#</a></h2>
+<p>Hydropower and wind power are considered renewable.</p>
+<p>Compute the total renewable share (as a fraction)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># YOUR CODE HERE</span>
+<span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
+</pre></div>
 </div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># SOLUTION</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TEST</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="q3-hydropower-production">
+<h2>Q3: Hydropower production<a class="headerlink" href="#q3-hydropower-production" title="Permalink to this heading">#</a></h2>
+<p>Compute the total hydropower production in TWh.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># YOUR CODE HERE</span>
+<span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># SOLUTION</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TEST</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="q4-non-renewable-share">
+<h2>Q4: Non-renewable share<a class="headerlink" href="#q4-non-renewable-share" title="Permalink to this heading">#</a></h2>
+<p>Estimate the non-renewable share of the system.</p>
+<p>Hint: Sum all renewable sources first.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># YOUR CODE HERE</span>
+<span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># SOLUTION</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TEST</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="q5-wind-power-production">
+<h2>Q5: Wind power production<a class="headerlink" href="#q5-wind-power-production" title="Permalink to this heading">#</a></h2>
+<p>Compute wind power production in TWh.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># YOUR CODE HERE</span>
+<span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># SOLUTION</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TEST</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -442,7 +618,7 @@ document.write(`
         },
         kernelOptions: {
             name: "python3",
-            path: "./03_circuits"
+            path: "./assignments"
         },
         predefinedOutput: true
     }
@@ -460,20 +636,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../02_fundamentals/fundamentals.html"
+       href="../01_introduction/power_system_data.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Fundamentals</p>
+        <p class="prev-next-title">Power System Data</p>
       </div>
     </a>
     <a class="right-next"
-       href="../04_threephase/threephase.html"
+       href="../02_fundamentals/fundamentals.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Three-Phase Circuits</p>
+        <p class="prev-next-title">Fundamentals</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -493,11 +669,14 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Basic represantations</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#phasor-convertions">Phasor convertions</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#impedance-triangle">Impedance triangle</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning objectives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#given-data-2025">Given Data (2025)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#q1-power-balance">Q1: Power balance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#q2-renewable-share">Q2: Renewable share</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#q3-hydropower-production">Q3: Hydropower production</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#q4-non-renewable-share">Q4: Non-renewable share</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#q5-wind-power-production">Q5: Wind power production</a></li>
 </ul>
-
   </nav></div>
 
 </div></div>
