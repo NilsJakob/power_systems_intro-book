@@ -10,3 +10,19 @@ __pycache__/
 
 # Jupyter Book build output
 _build/
+
+
+# Instructor content (contains solutions)
+nbgrader/**/source/
+
+# Student submissions (local only)
+nbgrader/**/submitted/
+
+# Autograding output
+nbgrader/**/autograded/
+
+# Database
+nbgrader/**/gradebook.db
+
+# Checkpoints
+.ipynb_checkpoints
