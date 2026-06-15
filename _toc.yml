@@ -9,6 +9,7 @@ parts:
   - caption: Introduction
     chapters:
       - file: 01_introduction/introduction
+      - file: 01_introduction/power_system_data
 
   - caption: Fundamentals
     chapters:
