@@ -35,6 +35,7 @@
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="_static/override.css" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
@@ -106,8 +107,8 @@ const thebe_selector_output = ".output, .cell_output"
          class="form-control"
          name="q"
          id="search-input"
-         placeholder="Search this book..."
-         aria-label="Search this book..."
+         placeholder="Search..."
+         aria-label="Search..."
          autocomplete="off"
          autocorrect="off"
          autocapitalize="off"
@@ -160,14 +161,6 @@ const thebe_selector_output = ".output, .cell_output"
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
-        
-        <ul class="nav bd-sidenav bd-sidenav__home-link">
-            <li class="toctree-l1">
-                <a class="reference internal" href="index.html">
-                    Welcome to the book Introduction to Electrical Power Systems
-                </a>
-            </li>
-        </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="01_introduction/introduction.html">Introduction</a></li>
@@ -226,53 +219,6 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="header-article-item">
 
 <div class="article-header-buttons">
-
-
-
-
-
-<div class="dropdown dropdown-source-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
-    <i class="fab fa-github"></i>
-  </button>
-  <ul class="dropdown-menu">
-      
-      
-      
-      <li><a href="https://github.com/NilsJakob/power_systems_intro-book" target="_blank"
-   class="btn btn-sm btn-source-repository-button dropdown-item"
-   title="Source repository"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="btn__text-container">Repository</span>
-</a>
-</li>
-      
-      
-      
-      
-      <li><a href="https://github.com/NilsJakob/power_systems_intro-book/issues/new?title=Issue%20on%20page%20%2Freferences.html&body=Your%20issue%20content%20here." target="_blank"
-   class="btn btn-sm btn-source-issues-button dropdown-item"
-   title="Open an issue"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="btn__text-container">Open issue</span>
-</a>
-</li>
-      
-  </ul>
-</div>
-
 
 
 
@@ -384,33 +330,6 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="referanser">
 <h1>Referanser<a class="headerlink" href="#referanser" title="Permalink to this heading">#</a></h1>
-<div class="docutils container" id="id1">
-<div class="citation" id="id7" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>EBC+94<span class="fn-bracket">]</span></span>
-<p>Mark Enns, Larry Budler, T. W. Cease, Ahmed Elneweihi, Ed Guro, Mladen Kezunovic, John Linders, Pierre Leblanc, John Postforoosh, Ramas Ramaswami, Farajollah Soudi, Rick Taylor, Helmut Ungrad, S. S. Venkata, and John Zipp. Potential applications of expert systems to power system protection. <em>IEEE Transactions on Power Delivery</em>, 9(2):720–728, April 1994. Working Group D10 of the Line Protection Subcommittee, Power System Relaying Committee.</p>
-</div>
-<div class="citation" id="id3" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>H+20<span class="fn-bracket">]</span></span>
-<p>Charles R. Harris and others. Array programming with numpy. <em>Nature</em>, 585:357–362, 2020. <a class="reference external" href="https://doi.org/10.1038/s41586-020-2649-2">doi:10.1038/s41586-020-2649-2</a>.</p>
-</div>
-<div class="citation" id="id5" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>Kun94<span class="fn-bracket">]</span></span>
-<p>Prabha Kundur. <em>Power System Stability and Control</em>. McGraw-Hill, 1994.</p>
-</div>
-<div class="citation" id="id6" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>MBB20<span class="fn-bracket">]</span></span>
-<p>Jan Machowski, Janusz Bialek, and James R. Bumby. <em>Power System Dynamics: Stability and Control</em>. Wiley, 3 edition, 2020.</p>
-</div>
-<div class="citation" id="id2" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>McK10<span class="fn-bracket">]</span></span>
-<p>Wes McKinney. Data structures for statistical computing in python. In <em>Proceedings of the 9th Python in Science Conference</em>, 51–56. 2010.</p>
-</div>
-<div class="citation" id="id4" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>V+20<span class="fn-bracket">]</span></span>
-<p>Pauli Virtanen and others. Scipy 1.0: fundamental algorithms for scientific computing in python. <em>Nature Methods</em>, 17:261–272, 2020. <a class="reference external" href="https://doi.org/10.1038/s41592-019-0686-2">doi:10.1038/s41592-019-0686-2</a>.</p>
-</div>
-</div>
-</div>
 </section>
 
     <script type="text/x-thebe-config">
@@ -439,21 +358,6 @@ document.write(`
               
               
               
-              
-                <footer class="prev-next-footer d-print-none">
-                  
-<div class="prev-next-area">
-    <a class="left-prev"
-       href="04_threephase/threephase.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Three-Phase Circuits</p>
-      </div>
-    </a>
-</div>
-                </footer>
               
             </div>
             
