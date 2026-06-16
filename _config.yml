@@ -8,7 +8,7 @@ execute:
 only_build_toc_files: true
 
 repository:
-  url: https://github.com/NilsJakob/power_systems_intro-book
+  url: https://github.com/nilsjakob/power_systems_intro-book
   branch: main
   path_to_book: ""
 
