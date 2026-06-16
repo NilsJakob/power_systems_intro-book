@@ -33,6 +33,7 @@ html:
 repository:
   url: https://github.com/NilsJakob/power_systems_intro-book
   branch: main
+  path_to_book: ""
 
 
 launch_buttons:
