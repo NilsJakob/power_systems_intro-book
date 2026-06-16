@@ -2,63 +2,30 @@ title: Electrical Power Systems Introduction
 author: Nils Jakob Johannesen
 copyright: "2026"
 
-
 execute:
-  execute_notebooks: off
+  execute_notebooks: "off"
 
 only_build_toc_files: true
-
-html:
-  theme: sphinx_book_theme
-
-sphinx:
-  config:
-    html_css_files:
-      - custom.css
-
-
-html_theme_options:
-  show_prev_next: false
-  secondary_sidebar_items: []
-
-html_static_path:
-  - _static
-
-
-html:
-  use_repository_button: true
-  use_issues_button: true
-
 
 repository:
   url: https://github.com/NilsJakob/power_systems_intro-book
   branch: main
   path_to_book: ""
 
-
 launch_buttons:
   binderhub_url: https://mybinder.org
+  notebook_interface: jupyterlab
 
-
-
-exclude_patterns:
-  - jb-env/**
-  - jv-env/**
-  - _build/**
+html:
+  theme: sphinx_book_theme
+  use_repository_button: true
+  use_issues_button: true
 
 sphinx:
   config:
+    html_theme_options:
+      show_prev_next: false
+      secondary_sidebar_items: []
     html_css_files:
+      - custom.css
       - override.css
-
-  extra_extensions: 
-    - sphinxcontrib.bibtex
-
-    
-bibtex_bibfiles:
-  - references.bib
-
-bibtex_reference_style: author-year
-
-launch_buttons:
-  thebe: false
