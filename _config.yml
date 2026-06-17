@@ -3,7 +3,7 @@ author: Nils Jakob Johannesen
 copyright: "2026"
 
 execute:
-  execute_notebooks: "auto"
+  execute_notebooks: "force"
 
 only_build_toc_files: true
 
