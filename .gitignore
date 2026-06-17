@@ -15,6 +15,11 @@ _build/
 # Instructor content (contains solutions)
 nbgrader/**/source/
 
+
+# Generated student version
+nbgrader/**/release/
+
+
 # Student submissions (local only)
 nbgrader/**/submitted/
 
@@ -25,4 +30,4 @@ nbgrader/**/autograded/
 nbgrader/**/gradebook.db
 
 # Checkpoints
-.ipynb_checkpoints
+.ipynb_checkpoints/
