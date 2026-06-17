@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Assignment A0: Power System Data (Norway) &#8212; Electrical Power Systems Introduction</title>
+    <title>Assignment A1: Power System Data &#8212; Electrical Power Systems Introduction</title>
   
   
   
@@ -168,7 +168,8 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="power_system_data.html">Power System Data</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Assignment A0: Power System Data (Norway)</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Assignment A1: Power System Data</a></li>
+
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Fundamentals</span></p>
 <ul class="nav bd-sidenav">
@@ -319,7 +320,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Assignment A0: Power System Data (Norway)</h1>
+    <h1>Assignment A1: Power System Data</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -329,6 +330,12 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Assignment A1: Power System Data</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#start-assignment-in-binder">🚀 Start Assignment in Binder</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-work-on-this-assignment">How to work on this assignment</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#assignment-a0-power-system-data-norway">Assignment A0: Power System Data (Norway)</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning objectives</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#given-data-2025">Given Data (2025)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#q1-power-balance">Q1: Power balance</a></li>
@@ -337,6 +344,9 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#q4-non-renewable-share">Q4: Non-renewable share</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#q5-wind-power-production">Q5: Wind power production</a></li>
 </ul>
+</li>
+</ul>
+
             </nav>
         </div>
     </div>
@@ -358,6 +368,24 @@ document.write(`
 </div>
 </div>
 <hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="assignment-a1-power-system-data">
+<h1>Assignment A1: Power System Data<a class="headerlink" href="#assignment-a1-power-system-data" title="Permalink to this heading">#</a></h1>
+<section id="start-assignment-in-binder">
+<h2>🚀 Start Assignment in Binder<a class="headerlink" href="#start-assignment-in-binder" title="Permalink to this heading">#</a></h2>
+<p><a class="reference external" href="https://mybinder.org/v2/gh/nilsjakob/power_systems_intro-book/main?urlpath=lab/tree/01_introduction/A1_power_system_data.ipynb"><img alt="Launch Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
+</section>
+<hr class="docutils" />
+<section id="how-to-work-on-this-assignment">
+<h2>How to work on this assignment<a class="headerlink" href="#how-to-work-on-this-assignment" title="Permalink to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Click the <strong>Launch Binder</strong> button above</p></li>
+<li><p>Wait for the environment to start (30–60 seconds)</p></li>
+<li><p>Solve the tasks</p></li>
+<li><p>Run the test/check cells</p></li>
+<li><p>Repeat until everything is correct</p></li>
+</ol>
+</section>
+</section>
 <section class="tex2jax_ignore mathjax_ignore" id="assignment-a0-power-system-data-norway">
 <h1>Assignment A0: Power System Data (Norway)<a class="headerlink" href="#assignment-a0-power-system-data-norway" title="Permalink to this heading">#</a></h1>
 <p>This assignment is based on real data from the Norwegian power system.</p>
@@ -402,6 +430,28 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">score</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">check_answer</span><span class="p">(</span><span class="n">student</span><span class="p">,</span> <span class="n">expected</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">hint</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
+    <span class="k">global</span> <span class="n">score</span><span class="p">,</span> <span class="n">total</span>
+    <span class="n">total</span> <span class="o">+=</span> <span class="mi">1</span>
+    
+    <span class="k">if</span> <span class="n">student</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">: no answer yet&quot;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="nb">abs</span><span class="p">(</span><span class="n">student</span> <span class="o">-</span> <span class="n">expected</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">1e-6</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2"> is correct&quot;</span><span class="p">)</span>
+        <span class="n">score</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2"> is incorrect&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">hint</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Hint: </span><span class="si">{</span><span class="n">hint</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Data provided</span>
 <span class="n">production</span> <span class="o">=</span> <span class="mi">162</span>
 <span class="n">consumption</span> <span class="o">=</span> <span class="mi">139</span>
@@ -430,29 +480,11 @@ document.write(`
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">NotImplementedError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
 <span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># YOUR CODE HERE</span>
 <span class="ne">----&gt; </span><span class="mi">2</span> <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
 
 <span class="ne">NotImplementedError</span>: 
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># SOLUTION</span>
-<span class="n">surplus</span> <span class="o">=</span> <span class="n">production</span> <span class="o">-</span> <span class="n">consumption</span>
-<span class="n">surplus</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TEST</span>
-<span class="n">expected</span> <span class="o">=</span> <span class="n">production</span> <span class="o">-</span> <span class="n">consumption</span>
-<span class="k">assert</span> <span class="nb">abs</span><span class="p">(</span><span class="n">surplus</span> <span class="o">-</span> <span class="n">expected</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">1e-6</span>
 </pre></div>
 </div>
 </div>
@@ -470,24 +502,6 @@ document.write(`
 </div>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># SOLUTION</span>
-<span class="n">renewable_share</span> <span class="o">=</span> <span class="n">hydro_share</span> <span class="o">+</span> <span class="n">wind_share</span>
-<span class="n">renewable_share</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TEST</span>
-<span class="n">expected</span> <span class="o">=</span> <span class="n">hydro_share</span> <span class="o">+</span> <span class="n">wind_share</span>
-<span class="k">assert</span> <span class="nb">abs</span><span class="p">(</span><span class="n">renewable_share</span> <span class="o">-</span> <span class="n">expected</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">1e-6</span>
-</pre></div>
-</div>
-</div>
-</div>
 </section>
 <section id="q3-hydropower-production">
 <h2>Q3: Hydropower production<a class="headerlink" href="#q3-hydropower-production" title="Permalink to this heading">#</a></h2>
@@ -496,24 +510,6 @@ document.write(`
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># YOUR CODE HERE</span>
 <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># SOLUTION</span>
-<span class="n">hydro</span> <span class="o">=</span> <span class="n">production</span> <span class="o">*</span> <span class="n">hydro_share</span>
-<span class="n">hydro</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TEST</span>
-<span class="n">expected</span> <span class="o">=</span> <span class="n">production</span> <span class="o">*</span> <span class="n">hydro_share</span>
-<span class="k">assert</span> <span class="nb">abs</span><span class="p">(</span><span class="n">hydro</span> <span class="o">-</span> <span class="n">expected</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">1e-6</span>
 </pre></div>
 </div>
 </div>
@@ -527,25 +523,6 @@ document.write(`
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># YOUR CODE HERE</span>
 <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># SOLUTION</span>
-<span class="n">renewable</span> <span class="o">=</span> <span class="n">hydro_share</span> <span class="o">+</span> <span class="n">wind_share</span> <span class="o">+</span> <span class="n">solar_share</span>
-<span class="n">non_renewable</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">renewable</span>
-<span class="n">non_renewable</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TEST</span>
-<span class="n">expected</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="n">hydro_share</span> <span class="o">+</span> <span class="n">wind_share</span> <span class="o">+</span> <span class="n">solar_share</span><span class="p">)</span>
-<span class="k">assert</span> <span class="nb">abs</span><span class="p">(</span><span class="n">non_renewable</span> <span class="o">-</span> <span class="n">expected</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">1e-6</span>
 </pre></div>
 </div>
 </div>
@@ -564,18 +541,55 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># SOLUTION</span>
-<span class="n">wind</span> <span class="o">=</span> <span class="n">production</span> <span class="o">*</span> <span class="n">wind_share</span>
-<span class="n">wind</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Checking all answers...</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">check_answer</span><span class="p">(</span><span class="n">surplus</span><span class="p">,</span> <span class="n">production</span> <span class="o">-</span> <span class="n">consumption</span><span class="p">,</span> <span class="s2">&quot;Q1 surplus&quot;</span><span class="p">)</span>
+<span class="n">check_answer</span><span class="p">(</span><span class="n">renewable_share</span><span class="p">,</span> <span class="n">hydro_share</span> <span class="o">+</span> <span class="n">wind_share</span><span class="p">,</span> <span class="s2">&quot;Q2 renewable share&quot;</span><span class="p">)</span>
+<span class="n">check_answer</span><span class="p">(</span><span class="n">hydro</span><span class="p">,</span> <span class="n">production</span> <span class="o">*</span> <span class="n">hydro_share</span><span class="p">,</span> <span class="s2">&quot;Q3 hydro&quot;</span><span class="p">)</span>
+<span class="n">check_answer</span><span class="p">(</span><span class="n">non_renewable</span><span class="p">,</span> <span class="mi">1</span><span class="o">-</span><span class="n">renewable</span><span class="p">,</span> <span class="s2">&quot;Q4 non-renewable share&quot;</span><span class="p">)</span>
+<span class="n">check_answer</span><span class="p">(</span><span class="n">wind</span><span class="p">,</span> <span class="n">production</span> <span class="o">*</span> <span class="n">wind_share</span><span class="p">,</span> <span class="s2">&quot;Q5 wind power&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TEST</span>
-<span class="n">expected</span> <span class="o">=</span> <span class="n">production</span> <span class="o">*</span> <span class="n">wind_share</span>
-<span class="k">assert</span> <span class="nb">abs</span><span class="p">(</span><span class="n">expected</span> <span class="o">-</span> <span class="n">expected</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">1e-6</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;🔍 Checking all answers...</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">check_answer</span><span class="p">(</span><span class="n">surplus</span><span class="p">,</span> <span class="n">production</span> <span class="o">-</span> <span class="n">consumption</span><span class="p">,</span> 
+             <span class="s2">&quot;Q1 surplus&quot;</span><span class="p">,</span> 
+             <span class="s2">&quot;Subtract consumption from production&quot;</span><span class="p">)</span>
+
+<span class="n">check_answer</span><span class="p">(</span><span class="n">renewable_share</span><span class="p">,</span> <span class="n">hydro_share</span> <span class="o">+</span> <span class="n">wind_share</span><span class="p">,</span> 
+             <span class="s2">&quot;Q2 renewable share&quot;</span><span class="p">,</span> 
+             <span class="s2">&quot;Add hydro and wind shares&quot;</span><span class="p">)</span>
+
+<span class="n">check_answer</span><span class="p">(</span><span class="n">hydro</span><span class="p">,</span> <span class="n">production</span> <span class="o">*</span> <span class="n">hydro_share</span><span class="p">,</span> 
+             <span class="s2">&quot;Q3 hydropower&quot;</span><span class="p">,</span> 
+             <span class="s2">&quot;Multiply production by hydro share&quot;</span><span class="p">)</span>
+
+<span class="n">check_answer</span><span class="p">(</span><span class="n">non_renewable</span><span class="p">,</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">renewable</span><span class="p">,</span> 
+             <span class="s2">&quot;Q4 non-renewable share&quot;</span><span class="p">,</span> 
+             <span class="s2">&quot;Subtract renewable share from 1&quot;</span><span class="p">)</span>
+
+<span class="n">check_answer</span><span class="p">(</span><span class="n">wind</span><span class="p">,</span> <span class="n">production</span> <span class="o">*</span> <span class="n">wind_share</span><span class="p">,</span> 
+             <span class="s2">&quot;Q5 wind power&quot;</span><span class="p">,</span> 
+             <span class="s2">&quot;Multiply production by wind share&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2"> Final score:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">score</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">total</span><span class="si">}</span><span class="s2"> correct&quot;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">score</span> <span class="o">==</span> <span class="n">total</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Perfect!&quot;</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">score</span> <span class="o">&gt;=</span> <span class="n">total</span> <span class="o">*</span> <span class="mf">0.7</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Good job!&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Keep practicing and revise your answers&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
