@@ -65,6 +65,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '01_introduction/A1_power_system_data';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -355,7 +357,18 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="assignment-a1-power-system-data">
+  <p>Before you turn this problem in, make sure everything runs as expected. First, <strong>restart the kernel</strong> (in the menubar, select Kernel <span class="math notranslate nohighlight">\(\rightarrow\)</span> Restart) and then <strong>run all cells</strong> (in the menubar, select Cell <span class="math notranslate nohighlight">\(\rightarrow\)</span> Run All).</p>
+<p>Make sure you fill in any place that says <code class="docutils literal notranslate"><span class="pre">YOUR</span> <span class="pre">CODE</span> <span class="pre">HERE</span></code> or “YOUR ANSWER HERE”, as well as your name and collaborators below:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">NAME</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+<span class="n">COLLABORATORS</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="assignment-a1-power-system-data">
 <h1>Assignment A1: Power System Data<a class="headerlink" href="#assignment-a1-power-system-data" title="Permalink to this heading">#</a></h1>
 <section id="start-assignment-in-binder">
 <h2>🚀 Start Assignment in Binder<a class="headerlink" href="#start-assignment-in-binder" title="Permalink to this heading">#</a></h2>
@@ -417,14 +430,6 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">score</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Data provided</span>
 <span class="n">production</span> <span class="o">=</span> <span class="mi">162</span>
 <span class="n">consumption</span> <span class="o">=</span> <span class="mi">139</span>
@@ -445,12 +450,19 @@ document.write(`
 <p>Return the result in TWh.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### BEGIN SOLUTION</span>
-<span class="n">surplus</span> <span class="o">=</span> <span class="n">production</span> <span class="o">-</span> <span class="n">consumption</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># YOUR CODE HERE</span>
+<span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NotImplementedError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># YOUR CODE HERE</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
 
-<span class="c1"># hidden grading test</span>
-<span class="k">assert</span> <span class="nb">abs</span><span class="p">(</span><span class="n">surplus</span> <span class="o">-</span> <span class="p">(</span><span class="n">production</span> <span class="o">-</span> <span class="n">consumption</span><span class="p">))</span> <span class="o">&lt;</span> <span class="mf">1e-6</span>
-<span class="c1">### END SOLUTION</span>
+<span class="ne">NotImplementedError</span>: 
 </pre></div>
 </div>
 </div>
@@ -463,13 +475,8 @@ document.write(`
 <p>Store your result in the variable <code class="docutils literal notranslate"><span class="pre">renewable_share</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### BEGIN SOLUTION</span>
-<span class="n">renewable_share</span> <span class="o">=</span> <span class="n">hydro_share</span> <span class="o">+</span> <span class="n">wind_share</span>
-
-<span class="c1"># hidden grading test</span>
-<span class="n">expected</span> <span class="o">=</span> <span class="n">hydro_share</span> <span class="o">+</span> <span class="n">wind_share</span>
-<span class="k">assert</span> <span class="nb">abs</span><span class="p">(</span><span class="n">renewable_share</span> <span class="o">-</span> <span class="n">expected</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">1e-6</span>
-<span class="c1">### END SOLUTION</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># YOUR CODE HERE</span>
+<span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -480,13 +487,8 @@ document.write(`
 <p>Compute the total hydropower production in TWh, in a variable <code class="docutils literal notranslate"><span class="pre">hydro</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### BEGIN SOLUTION</span>
-<span class="n">hydro</span> <span class="o">=</span> <span class="n">production</span> <span class="o">*</span> <span class="n">hydro_share</span>
-
-<span class="c1"># hidden grading test</span>
-<span class="n">expected</span> <span class="o">=</span> <span class="n">production</span> <span class="o">*</span> <span class="n">hydro_share</span>
-<span class="k">assert</span> <span class="nb">abs</span><span class="p">(</span><span class="n">hydro</span> <span class="o">-</span> <span class="n">expected</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">1e-6</span>
-<span class="c1">### END SOLUTION</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># YOUR CODE HERE</span>
+<span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -497,14 +499,8 @@ document.write(`
 <p>Estimate the non-renewable share of the system, in a variable named <code class="docutils literal notranslate"><span class="pre">non_renewable</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### BEGIN SOLUTION</span>
-<span class="n">renewable_share</span> <span class="o">=</span> <span class="n">hydro_share</span> <span class="o">+</span> <span class="n">wind_share</span> <span class="o">+</span> <span class="n">solar_share</span>
-<span class="n">non_renewable</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">renewable_share</span>
-
-<span class="c1"># hidden grading test</span>
-<span class="n">expected</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="n">hydro_share</span> <span class="o">+</span> <span class="n">wind_share</span> <span class="o">+</span> <span class="n">solar_share</span><span class="p">)</span>
-<span class="k">assert</span> <span class="nb">abs</span><span class="p">(</span><span class="n">non_renewable</span> <span class="o">-</span> <span class="n">expected</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">1e-6</span>
-<span class="c1">### END SOLUTION</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># YOUR CODE HERE</span>
+<span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -516,13 +512,8 @@ document.write(`
 <p>Use variable <code class="docutils literal notranslate"><span class="pre">wind</span></code></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### BEGIN SOLUTION</span>
-<span class="n">wind</span> <span class="o">=</span> <span class="n">production</span> <span class="o">*</span> <span class="n">wind_share</span>
-
-<span class="c1"># hidden grading test</span>
-<span class="n">expected</span> <span class="o">=</span> <span class="n">production</span> <span class="o">*</span> <span class="n">wind_share</span>
-<span class="k">assert</span> <span class="nb">abs</span><span class="p">(</span><span class="n">expected</span> <span class="o">-</span> <span class="n">expected</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">1e-6</span>
-<span class="c1">### END SOLUTION</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># YOUR CODE HERE</span>
+<span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -558,15 +549,6 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Q1 surplus: correct
-Q2 renewable_share: correct
-Q3 hydro: correct
-Q4 non_renewable: correct
-Q5 wind: correct
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -579,13 +561,6 @@ Q5 wind: correct
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Good job!&quot;</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Keep practicing and revise your answers&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> Final score:
-5/5 correct
-Perfect!
 </pre></div>
 </div>
 </div>
