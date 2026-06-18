@@ -1,5 +1,13 @@
+jupyter
+nbconvert
+notebook
+numpy
+pandas
+matplotlib
+scipy
 jupyter-book==0.15.1
 schemdraw
 pandas
 matplotlib
-numpy
+
+
