@@ -1,0 +1,15 @@
+#!/bin/bash
+set -e
+
+find . -name "A*.ipynb" \
+  -not -path "*/.ipynb_checkpoints/*" \
+  -not -path "./.*" \
+  -not -path "./jb-env/*" \
+  -not -path "./jb-env310/*" \
+  -not -path "*/site-packages/*" \
+  -exec jupyter nbconvert \
+    --execute \
+    --inplace \
+    --ExecutePreprocessor.timeout=120 \
+    --ExecutePreprocessor.allow_errors=True \
+    "{}" \;
