@@ -7,3 +7,4 @@ matplotlib
 scipy
 jupyter-book==0.15.1
 schemdraw
+jupyterlab-hide-code
