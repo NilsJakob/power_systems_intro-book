@@ -17,7 +17,7 @@ parts:
       - file: 02_fundamentals/fundamentals
       - file: 03_circuits/representations
       - file: 04_threephase/threephase
-
+      - file: 03_circuits/A3_basics
 
   - caption: Referanser
     chapters:
