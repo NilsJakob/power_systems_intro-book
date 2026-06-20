@@ -41,23 +41,25 @@ setTimeout(function() {
 def tag_notebook(nb_path):
     """Tag FEEDBACK/SCORE cells and inject JS auto-hide"""
 
+    # Load notebook
     with open(nb_path, "r", encoding="utf-8") as f:
         nb = json.load(f)
 
     modified = False
     js_present = False
 
+    # ---- PROCESS CELLS ----
     for cell in nb.get("cells", []):
         if cell.get("cell_type") != "code":
             continue
 
         source = "".join(cell.get("source", []))
 
-        # Check if JS already exists
-        if "HIDE_INIT" in source:
+        # ✅ Robust JS detection (only top marker counts)
+        if source.strip().startswith("# HIDE_INIT"):
             js_present = True
 
-        # Tag matching cells
+        # ✅ Tag feedback/score cells
         if any(marker in source for marker in MARKERS):
             tags = cell.setdefault("metadata", {}).setdefault("tags", [])
 
@@ -66,19 +68,20 @@ def tag_notebook(nb_path):
                     tags.append(tag)
                     modified = True
 
-    # Inject JS snippet at top if missing
+    # ---- INSERT JS CELL IF MISSING ----
     if not js_present:
         js_cell = {
             "cell_type": "code",
             "metadata": {"tags": ["remove-input"]},
-            "source": [line + "\n" for line in JS_SNIPPET.split("\n")],
+            "source": JS_SNIPPET.splitlines(keepends=True),  # ✅ preserves formatting
             "outputs": [],
             "execution_count": None,
         }
+
         nb["cells"].insert(0, js_cell)
         modified = True
 
-    # Save only if changed
+    # ---- SAVE ONLY IF MODIFIED ----
     if modified:
         with open(nb_path, "w", encoding="utf-8") as f:
             json.dump(nb, f, indent=1, ensure_ascii=False)
@@ -88,7 +91,7 @@ def tag_notebook(nb_path):
         print(f"✔ No change: {nb_path}")
 
 
-# ---- APPLY TO BOOK NOTEBOOKS ----
+# ---- APPLY TO ALL NOTEBOOKS ----
 
 def process_all():
     root = Path(".")
@@ -104,7 +107,7 @@ def process_all():
             tag_notebook(nb_file)
 
 
-# ---- MAIN ----
+# ---- ENTRY POINT ----
 
 if __name__ == "__main__":
     process_all()
