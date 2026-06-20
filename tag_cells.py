@@ -17,38 +17,37 @@ BOOK_FOLDERS = [
     "04_threephase"
 ]
 
-
-# ✅ Robust JS (fixed timing issue)
+# ✅ WORKING JS FOR JUPYTERLAB 4 (DOM-based hide)
 JS_SNIPPET = """from IPython.display import Javascript
 
 Javascript(\"\"\"
-window.addEventListener('load', function() {
-    setTimeout(function() {
-        document.querySelectorAll('.jp-CodeCell').forEach(cell => {
-            if (cell.innerText.includes("# FEEDBACK CELL") ||
-                cell.innerText.includes("# SCORE CELL")) {
+setTimeout(function() {
+    document.querySelectorAll('.jp-CodeCell').forEach(cell => {
+        const text = cell.innerText;
 
-                const btn = cell.querySelector('[title="Collapse Input"]');
-                if (btn) {
-                    btn.click();
-                }
+        if (text.includes("# FEEDBACK CELL") ||
+            text.includes("# SCORE CELL")) {
+
+            const input = cell.querySelector('.jp-Cell-inputWrapper');
+            if (input) {
+                input.style.display = 'none';
             }
-        });
-    }, 2000);
-});
+        }
+    });
+}, 2000);
 \"\"\")
 """
 
 
 def tag_notebook(nb_path):
-    """Apply tags and inject JS auto-collapse"""
+    """Tag FEEDBACK/SCORE cells and inject JS auto-hide"""
 
     with open(nb_path, "r", encoding="utf-8") as f:
         nb = json.load(f)
 
     changed = False
 
-    # ---- Tag FEEDBACK + SCORE cells ----
+    # ---- TAG FEEDBACK + SCORE CELLS ----
     for cell in nb.get("cells", []):
         source = "".join(cell.get("source", []))
 
@@ -63,12 +62,7 @@ def tag_notebook(nb_path):
 
             metadata["tags"] = tags
 
-            # ✅ enforce collapse metadata
-            if metadata.get("hide_input") != True:
-                metadata["hide_input"] = True
-                changed = True
-
-    # ---- Inject JS INIT CELL (only once) ----
+    # ---- ADD JS INIT CELL (ONLY ONCE) ----
     already_exists = any(
         "HIDE_INIT" in "".join(cell.get("source", []))
         for cell in nb.get("cells", [])
@@ -78,9 +72,12 @@ def tag_notebook(nb_path):
         js_cell = {
             "cell_type": "code",
             "metadata": {
-                "tags": ["remove-input"]  # hidden in book
+                "tags": ["remove-input"]  # hidden in Book
             },
-            "source": ["# HIDE_INIT\n", JS_SNIPPET],
+            "source": [
+                "# HIDE_INIT\n",
+                JS_SNIPPET
+            ],
             "execution_count": None,
             "outputs": []
         }
@@ -88,7 +85,7 @@ def tag_notebook(nb_path):
         nb["cells"].insert(0, js_cell)
         changed = True
 
-    # ---- Save if modified ----
+    # ---- SAVE ----
     if changed:
         with open(nb_path, "w", encoding="utf-8") as f:
             json.dump(nb, f, indent=1)
@@ -109,4 +106,3 @@ for folder in BOOK_FOLDERS:
                 continue
 
             tag_notebook(nb)
-
