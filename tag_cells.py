@@ -17,7 +17,6 @@ BOOK_FOLDERS = [
     "04_threephase"
 ]
 
-# ✅ WORKING JS FOR JUPYTERLAB 4 (DOM-based hide)
 JS_SNIPPET = """from IPython.display import Javascript
 
 Javascript(\"\"\"
@@ -37,6 +36,7 @@ setTimeout(function() {
 }, 2000);
 \"\"\")
 """
+
 
 
 def tag_notebook(nb_path):
