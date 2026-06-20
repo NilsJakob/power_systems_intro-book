@@ -18,27 +18,30 @@ BOOK_FOLDERS = [
 ]
 
 
+# ✅ Robust JS (fixed timing issue)
 JS_SNIPPET = """from IPython.display import Javascript
 
 Javascript(\"\"\"
-setTimeout(function() {
-    document.querySelectorAll('.jp-CodeCell').forEach(cell => {
-        if (cell.innerText.includes("# FEEDBACK CELL") || 
-            cell.innerText.includes("# SCORE CELL")) {
+window.addEventListener('load', function() {
+    setTimeout(function() {
+        document.querySelectorAll('.jp-CodeCell').forEach(cell => {
+            if (cell.innerText.includes("# FEEDBACK CELL") ||
+                cell.innerText.includes("# SCORE CELL")) {
 
-            const btn = cell.querySelector('[title="Collapse Input"]');
-            if (btn) {
-                btn.click();
+                const btn = cell.querySelector('[title="Collapse Input"]');
+                if (btn) {
+                    btn.click();
+                }
             }
-        }
-    });
-}, 800);
+        });
+    }, 2000);
+});
 \"\"\")
 """
 
 
 def tag_notebook(nb_path):
-    """Tag FEEDBACK/SCORE cells and inject JS auto-collapse"""
+    """Apply tags and inject JS auto-collapse"""
 
     with open(nb_path, "r", encoding="utf-8") as f:
         nb = json.load(f)
@@ -60,7 +63,7 @@ def tag_notebook(nb_path):
 
             metadata["tags"] = tags
 
-            # enforce collapse metadata
+            # ✅ enforce collapse metadata
             if metadata.get("hide_input") != True:
                 metadata["hide_input"] = True
                 changed = True
@@ -75,18 +78,17 @@ def tag_notebook(nb_path):
         js_cell = {
             "cell_type": "code",
             "metadata": {
-                "tags": ["remove-input"]  # hide this in book
+                "tags": ["remove-input"]  # hidden in book
             },
             "source": ["# HIDE_INIT\n", JS_SNIPPET],
             "execution_count": None,
             "outputs": []
         }
 
-        # Insert at top
         nb["cells"].insert(0, js_cell)
         changed = True
 
-    # ---- Save if changed ----
+    # ---- Save if modified ----
     if changed:
         with open(nb_path, "w", encoding="utf-8") as f:
             json.dump(nb, f, indent=1)
@@ -95,7 +97,7 @@ def tag_notebook(nb_path):
         print(f"➖ No changes: {nb_path}")
 
 
-# ---- APPLY ----
+# ---- APPLY TO BOOK NOTEBOOKS ----
 
 for folder in BOOK_FOLDERS:
     path = Path(folder)
@@ -107,3 +109,4 @@ for folder in BOOK_FOLDERS:
                 continue
 
             tag_notebook(nb)
+
