@@ -17,27 +17,26 @@ BOOK_FOLDERS = [
     "04_threephase"
 ]
 
-JS_SNIPPET = """from IPython.display import Javascript
-
+JS_SNIPPET = """# HIDE_INIT
+from IPython.display import Javascript
 Javascript(\"\"\"
 setTimeout(function() {
     document.querySelectorAll('.jp-CodeCell').forEach(cell => {
-        const text = cell.innerText;
+        if (cell.innerText.includes("# FEEDBACK CELL") ||
+            cell.innerText.includes("# SCORE CELL")) {
 
-        if (text.includes("# FEEDBACK CELL") ||
-            text.includes("# SCORE CELL")) {
-
-            const input = cell.querySelector('.jp-Cell-inputWrapper');
-            if (input) {
-                input.style.display = 'none';
+            const btn = cell.querySelector('[title="Collapse Input"]');
+            if (btn) {
+                btn.click();
             }
         }
     });
-}, 2000);
+}, 800);
 \"\"\")
 """
 
 
+# ---- CORE FUNCTION ----
 
 def tag_notebook(nb_path):
     """Tag FEEDBACK/SCORE cells and inject JS auto-hide"""
@@ -45,64 +44,67 @@ def tag_notebook(nb_path):
     with open(nb_path, "r", encoding="utf-8") as f:
         nb = json.load(f)
 
-    changed = False
+    modified = False
+    js_present = False
 
-    # ---- TAG FEEDBACK + SCORE CELLS ----
     for cell in nb.get("cells", []):
+        if cell.get("cell_type") != "code":
+            continue
+
         source = "".join(cell.get("source", []))
 
+        # Check if JS already exists
+        if "HIDE_INIT" in source:
+            js_present = True
+
+        # Tag matching cells
         if any(marker in source for marker in MARKERS):
-            metadata = cell.setdefault("metadata", {})
-            tags = metadata.get("tags", [])
+            tags = cell.setdefault("metadata", {}).setdefault("tags", [])
 
             for tag in TAGS_TO_ADD:
                 if tag not in tags:
                     tags.append(tag)
-                    changed = True
+                    modified = True
 
-            metadata["tags"] = tags
-
-    # ---- ADD JS INIT CELL (ONLY ONCE) ----
-    already_exists = any(
-        "HIDE_INIT" in "".join(cell.get("source", []))
-        for cell in nb.get("cells", [])
-    )
-
-    if not already_exists:
+    # Inject JS snippet at top if missing
+    if not js_present:
         js_cell = {
             "cell_type": "code",
-            "metadata": {
-                "tags": ["remove-input"]  # hidden in Book
-            },
-            "source": [
-                "# HIDE_INIT\n",
-                JS_SNIPPET
-            ],
+            "metadata": {"tags": ["remove-input"]},
+            "source": [line + "\n" for line in JS_SNIPPET.split("\n")],
+            "outputs": [],
             "execution_count": None,
-            "outputs": []
         }
-
         nb["cells"].insert(0, js_cell)
-        changed = True
+        modified = True
 
-    # ---- SAVE ----
-    if changed:
+    # Save only if changed
+    if modified:
         with open(nb_path, "w", encoding="utf-8") as f:
-            json.dump(nb, f, indent=1)
+            json.dump(nb, f, indent=1, ensure_ascii=False)
+
         print(f"✅ Updated: {nb_path}")
     else:
-        print(f"➖ No changes: {nb_path}")
+        print(f"✔ No change: {nb_path}")
 
 
 # ---- APPLY TO BOOK NOTEBOOKS ----
 
-for folder in BOOK_FOLDERS:
-    path = Path(folder)
+def process_all():
+    root = Path(".")
 
-    if path.exists():
-        for nb in path.rglob("A*.ipynb"):
+    for folder in BOOK_FOLDERS:
+        folder_path = root / folder
 
-            if ".ipynb_checkpoints" in str(nb):
-                continue
+        if not folder_path.exists():
+            print(f"⚠ Folder not found: {folder_path}")
+            continue
 
-            tag_notebook(nb)
+        for nb_file in folder_path.rglob("*.ipynb"):
+            tag_notebook(nb_file)
+
+
+# ---- MAIN ----
+
+if __name__ == "__main__":
+    process_all()
