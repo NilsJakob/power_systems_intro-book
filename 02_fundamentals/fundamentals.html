@@ -353,7 +353,24 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="fundamentals">
+  <div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<script type="application/javascript">
+setTimeout(function() {
+    document.querySelectorAll('.jp-CodeCell').forEach(cell => {
+        if (cell.innerText.includes("# FEEDBACK CELL") ||
+            cell.innerText.includes("# SCORE CELL")) {
+
+            const btn = cell.querySelector('[title="Collapse Input"]');
+            if (btn) {
+                btn.click();
+            }
+        }
+    });
+}, 800);
+</script></div>
+</div>
+<section class="tex2jax_ignore mathjax_ignore" id="fundamentals">
 <h1>Fundamentals<a class="headerlink" href="#fundamentals" title="Permalink to this heading">#</a></h1>
 <p>Fundamental to electrical power systems, is to define the time aspect.</p>
 <p>We start with the generic sinusoidal function and recall Euler’s formula:</p>

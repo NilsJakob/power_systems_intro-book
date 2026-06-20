@@ -348,7 +348,24 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="three-phase-circuits">
+  <div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<script type="application/javascript">
+setTimeout(function() {
+    document.querySelectorAll('.jp-CodeCell').forEach(cell => {
+        if (cell.innerText.includes("# FEEDBACK CELL") ||
+            cell.innerText.includes("# SCORE CELL")) {
+
+            const btn = cell.querySelector('[title="Collapse Input"]');
+            if (btn) {
+                btn.click();
+            }
+        }
+    });
+}, 800);
+</script></div>
+</div>
+<section class="tex2jax_ignore mathjax_ignore" id="three-phase-circuits">
 <h1>Three-Phase Circuits<a class="headerlink" href="#three-phase-circuits" title="Permalink to this heading">#</a></h1>
 <p>In three-phase circuits there is a 120 degree phase-shift of voltages</p>
 <section id="theta-v-in-three-phase-systems">

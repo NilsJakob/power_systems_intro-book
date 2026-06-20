@@ -346,7 +346,24 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="basic-represantations">
+  <div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<script type="application/javascript">
+setTimeout(function() {
+    document.querySelectorAll('.jp-CodeCell').forEach(cell => {
+        if (cell.innerText.includes("# FEEDBACK CELL") ||
+            cell.innerText.includes("# SCORE CELL")) {
+
+            const btn = cell.querySelector('[title="Collapse Input"]');
+            if (btn) {
+                btn.click();
+            }
+        }
+    });
+}, 800);
+</script></div>
+</div>
+<section class="tex2jax_ignore mathjax_ignore" id="basic-represantations">
 <h1>Basic represantations<a class="headerlink" href="#basic-represantations" title="Permalink to this heading">#</a></h1>
 <p>Knowing the angular freqency, <span class="math notranslate nohighlight">\(\omega\)</span>, a phasor can be re-transformed into the time-domain.</p>
 <p>Phasors lets us convert differential equations into algebraic equations using complex variables.</p>
@@ -355,7 +372,7 @@ document.write(`
 \[ Ri(t) + L\frac{di}{dt} +\frac{1}{C}\int i(t) dt = \sqrt{2} V cos(\omega t)\]</div>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<img alt="../_images/64d2e2b5706b243ed6c84ab88261be8cbd1971460dd83d898d78f535944e095f.svg" src="../_images/64d2e2b5706b243ed6c84ab88261be8cbd1971460dd83d898d78f535944e095f.svg" /></div>
+<img alt="../_images/f6ac0e98ca4b0eaf4c94269fe5e79ab287bd38f5c0da3e65d046d3a97d1c01aa.svg" src="../_images/f6ac0e98ca4b0eaf4c94269fe5e79ab287bd38f5c0da3e65d046d3a97d1c01aa.svg" /></div>
 </div>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="phasor-convertions">
@@ -365,7 +382,7 @@ document.write(`
 \[ R + jX_L - jX_C\]</div>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<img alt="../_images/2234c742b5c94ba75a983400025da9addf8128ee1016f43b3a71e3ae581444dd.svg" src="../_images/2234c742b5c94ba75a983400025da9addf8128ee1016f43b3a71e3ae581444dd.svg" /></div>
+<img alt="../_images/be290d2ac193b48c5d2e0ef94b085b0ac43b43106c54e6b7e17e91d40867935e.svg" src="../_images/be290d2ac193b48c5d2e0ef94b085b0ac43b43106c54e6b7e17e91d40867935e.svg" /></div>
 </div>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="impedance-triangle">
@@ -373,7 +390,7 @@ document.write(`
 <p>The impedance triangle illustrates the effect of inductance and capacitance on the impedance</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<img alt="../_images/1245f07bc8bee6007809d9cd9baf48abd70b77f4ce6133046278074c8492b4fc.svg" src="../_images/1245f07bc8bee6007809d9cd9baf48abd70b77f4ce6133046278074c8492b4fc.svg" /></div>
+<img alt="../_images/7f9647a8405ffc8e7036556b90c05aed7b7c1d0328b562d544d32a282af5f3e6.svg" src="../_images/7f9647a8405ffc8e7036556b90c05aed7b7c1d0328b562d544d32a282af5f3e6.svg" /></div>
 </div>
 </section>
 
