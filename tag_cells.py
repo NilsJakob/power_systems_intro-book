@@ -3,111 +3,79 @@ from pathlib import Path
 
 # ---- CONFIG ----
 
-MARKERS = [
-    "# FEEDBACK CELL",
-    "# SCORE CELL"
+MARKERS = ["# FEEDBACK CELL", "# SCORE CELL"]
+
+TAGS_TO_ADD = ["remove-input"]
+
+JS_CELL_SOURCE = [
+    "# HIDE_INIT\n",
+    "from IPython.display import Javascript\n",
+    "\n",
+    "Javascript(\"\"\"\n",
+    "setTimeout(function() {\n",
+    "  document.querySelectorAll('.jp-CodeCell').forEach(cell => {\n",
+    "    if (cell.innerText.includes('# FEEDBACK CELL') ||\n",
+    "        cell.innerText.includes('# SCORE CELL')) {\n",
+    "      const btn = cell.querySelector('[title=\"Collapse Input\"]');\n",
+    "      if (btn) btn.click();\n",
+    "    }\n",
+    "  });\n",
+    "}, 800);\n",
+    "\"\"\")\n"
 ]
-
-TAGS_TO_ADD = ["remove-input", "hide-input"]
-
-BOOK_FOLDERS = [
-    "01_introduction",
-    "02_fundamentals",
-    "03_circuits",
-    "04_threephase"
-]
-
-JS_SNIPPET = """# HIDE_INIT
-from IPython.display import Javascript
-Javascript(\"\"\"
-setTimeout(function() {
-    document.querySelectorAll('.jp-CodeCell').forEach(cell => {
-        if (cell.innerText.includes("# FEEDBACK CELL") ||
-            cell.innerText.includes("# SCORE CELL")) {
-
-            const btn = cell.querySelector('[title="Collapse Input"]');
-            if (btn) {
-                btn.click();
-            }
-        }
-    });
-}, 800);
-\"\"\")
-"""
-
 
 # ---- CORE FUNCTION ----
 
-def tag_notebook(nb_path):
-    """Tag FEEDBACK/SCORE cells and inject JS auto-hide"""
-
-    # Load notebook
+def process_notebook(nb_path):
     with open(nb_path, "r", encoding="utf-8") as f:
         nb = json.load(f)
 
-    modified = False
-    js_present = False
+    changed = False
 
-    # ---- PROCESS CELLS ----
-    for cell in nb.get("cells", []):
-        if cell.get("cell_type") != "code":
-            continue
+    # ---- Tag cells ----
+    for cell in nb["cells"]:
+        if cell["cell_type"] == "code":
+            source = "".join(cell["source"])
 
-        source = "".join(cell.get("source", []))
+            if any(marker in source for marker in MARKERS):
+                metadata = cell.setdefault("metadata", {})
+                tags = metadata.setdefault("tags", [])
 
-        # ✅ Robust JS detection (only top marker counts)
-        if source.strip().startswith("# HIDE_INIT"):
-            js_present = True
+                for tag in TAGS_TO_ADD:
+                    if tag not in tags:
+                        tags.append(tag)
+                        changed = True
 
-        # ✅ Tag feedback/score cells
-        if any(marker in source for marker in MARKERS):
-            tags = cell.setdefault("metadata", {}).setdefault("tags", [])
+    # ---- Ensure JS cell exists ----
+    js_exists = any(
+        cell["cell_type"] == "code" and "# HIDE_INIT" in "".join(cell["source"])
+        for cell in nb["cells"]
+    )
 
-            for tag in TAGS_TO_ADD:
-                if tag not in tags:
-                    tags.append(tag)
-                    modified = True
-
-    # ---- INSERT JS CELL IF MISSING ----
-    if not js_present:
+    if not js_exists:
         js_cell = {
             "cell_type": "code",
-            "metadata": {"tags": ["remove-input"]},
-            "source": JS_SNIPPET.splitlines(keepends=True),  # ✅ preserves formatting
+            "metadata": {},
+            "source": JS_CELL_SOURCE,
             "outputs": [],
             "execution_count": None,
         }
 
+        # insert at top
         nb["cells"].insert(0, js_cell)
-        modified = True
+        changed = True
 
-    # ---- SAVE ONLY IF MODIFIED ----
-    if modified:
+    # ---- Save file ----
+    if changed:
         with open(nb_path, "w", encoding="utf-8") as f:
-            json.dump(nb, f, indent=1, ensure_ascii=False)
-
+            json.dump(nb, f, indent=1)
         print(f"✅ Updated: {nb_path}")
-    else:
-        print(f"✔ No change: {nb_path}")
 
-
-# ---- APPLY TO ALL NOTEBOOKS ----
 
 def process_all():
-    root = Path(".")
+    for nb_path in Path(".").rglob("*.ipynb"):
+        process_notebook(nb_path)
 
-    for folder in BOOK_FOLDERS:
-        folder_path = root / folder
-
-        if not folder_path.exists():
-            print(f"⚠ Folder not found: {folder_path}")
-            continue
-
-        for nb_file in folder_path.rglob("*.ipynb"):
-            tag_notebook(nb_file)
-
-
-# ---- ENTRY POINT ----
 
 if __name__ == "__main__":
     process_all()
