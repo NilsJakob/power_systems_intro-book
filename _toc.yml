@@ -19,7 +19,7 @@ parts:
       - file: 04_threephase/threephase
       - file: 02_fundamentals/A2_fundamentals
       - file: 03_circuits/A3_basics
-      - file: 04_three_phase/A4_three_phase
+      - file: 04_threephase/A4_three_phase
 
   - caption: Referanser
     chapters:
