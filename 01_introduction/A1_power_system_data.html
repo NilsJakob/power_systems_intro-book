@@ -358,20 +358,17 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <div class="cell tag_remove-input tag_hide-input docutils container">
+  <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <script type="application/javascript">
 setTimeout(function() {
-    document.querySelectorAll('.jp-CodeCell').forEach(cell => {
-        if (cell.innerText.includes("# FEEDBACK CELL") || 
-            cell.innerText.includes("# SCORE CELL")) {
-
-            const btn = cell.querySelector('[title="Collapse Input"]');
-            if (btn) {
-                btn.click();
-            }
-        }
-    });
+  document.querySelectorAll('.jp-CodeCell').forEach(cell => {
+    if (cell.innerText.includes('# FEEDBACK CELL') ||
+        cell.innerText.includes('# SCORE CELL')) {
+      const btn = cell.querySelector('[title="Collapse Input"]');
+      if (btn) btn.click();
+    }
+  });
 }, 800);
 </script></div>
 </div>
@@ -526,7 +523,7 @@ setTimeout(function() {
 </div>
 </div>
 </div>
-<div class="cell tag_remove-input tag_hide-input docutils container">
+<div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Q1 surplus: no answer yet
 Q2 renewable_share: no answer yet
