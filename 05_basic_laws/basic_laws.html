@@ -1,0 +1,726 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Electric circuits &#8212; Electrical Power Systems Introduction</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/override.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '05_basic_laws/basic_laws';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Referanser" href="../references.html" />
+    <link rel="prev" title="Assignment A3: Basics" href="../03_circuits/A3_basics.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Electrical Power Systems Introduction</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../01_introduction/introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_introduction/power_system_data.html">Power System Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_introduction/A1_power_system_data.html">Assignment A1: Power System Data</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Fundamentals</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../02_fundamentals/fundamentals.html">Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_circuits/representations.html">Basic representations</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="../04_threephase/threephase.html">Three-Phase Circuits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_fundamentals/A2_fundamentals.html">Assignment A2: Fundamentals of Electrical Power Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_circuits/A3_basics.html">Assignment A3: Basics</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Electric circuits</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Electric circuits</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Referanser</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../references.html">Referanser</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/05_basic_laws/basic_laws.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Electric circuits</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#laws-for-circuit-analysis">Laws for Circuit analysis</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kirchoff-s-current-law-kcl">Kirchoff’s current law (KCL)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kirchhoff-s-voltage-law-kvl">Kirchhoff’s voltage law (KVL)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methods-for-circuit-analysis">Methods for Circuit analysis</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nodal-analysis">Nodal analysis</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#steps-to-determine-node-voltages">Steps to Determine Node Voltages</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#circuit-example-with-injected-currents">Circuit example with injected currents</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1">Step 1</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2">Step 2</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3">Step 3</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mesh-analysis">Mesh Analysis</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#steps-to-determine-mesh-currents">Steps to Determine Mesh Currents:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="electric-circuits">
+<h1>Electric circuits<a class="headerlink" href="#electric-circuits" title="Permalink to this heading">#</a></h1>
+<p>There are five basic circuit elements:</p>
+<ul class="simple">
+<li><p>voltage sources</p></li>
+<li><p>current sources</p></li>
+<li><p>resistors</p></li>
+<li><p>inductors</p></li>
+<li><p>capacitors</p></li>
+</ul>
+<p>A resistor is described mathematically using its voltage and current, and the relationship is known as <strong>Ohms’s law</strong></p>
+<div class="math notranslate nohighlight">
+\[ v = i \cdot R\]</div>
+<p>v = voltage
+i = current
+R = resistor</p>
+<p>The power equation:
+$<span class="math notranslate nohighlight">\( p = v \cdot i\)</span>$</p>
+<p>where p = the power in watts, v = the voltage in volts, i = the current in amperes, is derived from the definition of power:
+$<span class="math notranslate nohighlight">\( p = \frac{dw}{dt} = \frac{dw}{dq}\cdot\frac{dq}{dt} \)</span>$
+w = the energy in joules, and t = the time in seconds.</p>
+<p>The power in a resistor in terms of current is:
+$<span class="math notranslate nohighlight">\( p = i^2R\)</span>$</p>
+<p>The power in a resistor in terms of voltage is:
+$<span class="math notranslate nohighlight">\( p = \frac{v^2}{R}\)</span>$</p>
+<section id="laws-for-circuit-analysis">
+<h2>Laws for Circuit analysis<a class="headerlink" href="#laws-for-circuit-analysis" title="Permalink to this heading">#</a></h2>
+<p>The two fundamental laws for analysing electric circuits are Kirchoffs law.</p>
+<section id="kirchoff-s-current-law-kcl">
+<h3>Kirchoff’s current law (KCL)<a class="headerlink" href="#kirchoff-s-current-law-kcl" title="Permalink to this heading">#</a></h3>
+<p>Kirchoff’s law of currents (KCL) states that that the algebraic sum of currents entering a node is zero.</p>
+<div class="math notranslate nohighlight">
+\[ \sum_{n=1}^N i_n = 0 \]</div>
+<p>where N is the number of branches connected to the node and is the nth current entering (or leaving) the node. By this law, currents entering a node may be regarded as positive, while currents leaving the node may be taken as negative or vice versa.</p>
+<p>or:</p>
+<div class="math notranslate nohighlight">
+\[ \sum i_{in} = \sum i_{out} \]</div>
+<p>and as depicted in the figure:</p>
+<div class="math notranslate nohighlight">
+\[ i_1+i_2+i_3+i_4=i_5 \]</div>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<img alt="../_images/880a067f0d1c04508254e4fe6afac8dda306aefd4ca53c642e0a8b553353caa3.png" src="../_images/880a067f0d1c04508254e4fe6afac8dda306aefd4ca53c642e0a8b553353caa3.png" />
+</div>
+</div>
+</section>
+<section id="kirchhoff-s-voltage-law-kvl">
+<h3>Kirchhoff’s voltage law (KVL)<a class="headerlink" href="#kirchhoff-s-voltage-law-kvl" title="Permalink to this heading">#</a></h3>
+<p>Kirchhoff’s voltage law (KVL) states that the algebraic sum of all voltages around a closed path (or loop) is zero.
+Expressed matheatically
+$<span class="math notranslate nohighlight">\( \sum_{m=i}^M v_m = 0 \)</span>$</p>
+<p>where M is the number of voltages in the loop (or the number of branches in the loop) and <span class="math notranslate nohighlight">\(v_m\)</span> is the mth voltage.</p>
+<p>The sign on each voltage is the polarity of the terminal encountered first as we
+travel around the loop. We can start with any branch and go around
+the loop either clockwise or counterclockwise.</p>
+<p>If we start with
+the voltage source, <span class="math notranslate nohighlight">\(v_1\)</span> and go clockwise around the loop as shown; then
+voltages would be <span class="math notranslate nohighlight">\(-v_1+v_2+v_3\)</span> and in that order. For
+example, as we reach branch 3, the positive terminal is met first; hence,
+we have <span class="math notranslate nohighlight">\(+v_3\)</span>. For branch 4, we reach the negative terminal first; hence <span class="math notranslate nohighlight">\(-v_4\)</span>,
+Thus, KVL yields
+$<span class="math notranslate nohighlight">\(-v_1 + v_2 + v_3 -v_4 +v_5 = 0\)</span>$</p>
+<p>and rearranged:
+$<span class="math notranslate nohighlight">\(v_2+v_3+v_5 = v_1+v_4\)</span>$</p>
+<p>interpreted as: <strong>Sum of voltage drops = Sum of voltage rises</strong></p>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<img alt="../_images/79f14a825224e3e4211ba7ae6017a41d656430c93579f66d83f44d3f9ee4bd54.png" src="../_images/79f14a825224e3e4211ba7ae6017a41d656430c93579f66d83f44d3f9ee4bd54.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="methods-for-circuit-analysis">
+<h2>Methods for Circuit analysis<a class="headerlink" href="#methods-for-circuit-analysis" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Nodal analysis (based on a systematic application of KCL)</p></li>
+<li><p>Mesh analysis (based on a systematic application of KVL)</p></li>
+</ul>
+<p>The two techniques are so important that they should be regarded as the most important in circuit analysis.</p>
+<section id="nodal-analysis">
+<h3>Nodal analysis<a class="headerlink" href="#nodal-analysis" title="Permalink to this heading">#</a></h3>
+<p>Nodal analysis analyzes circuits using node voltages as the circuit variables. Choosing node voltages
+instead of element voltages as circuit variables reduces the number of equations one must solve simultaneously.</p>
+<p>When analysing circuits we think of power injected as current sources.</p>
+<p>In nodal analysis, we are interested in finding the node voltages.
+Given a circuit with n nodes without voltage sources, the nodal analysis
+of the circuit involves taking the following three steps.</p>
+<p>Remember that number of nodes is n, and there is 1 reference node ($v_o=0), which leaves n-1 non-reference node. The number of nonreference nodes is
+equal to the number of independent KCL-equations that we will derive.</p>
+<section id="steps-to-determine-node-voltages">
+<h4>Steps to Determine Node Voltages<a class="headerlink" href="#steps-to-determine-node-voltages" title="Permalink to this heading">#</a></h4>
+<ol class="arabic simple">
+<li><p>Select a node as the reference node. Assign voltages<br />
+v1, v2, …, vn-1 to the remaining n − 1 nodes. The<br />
+voltages are referenced with respect to the reference<br />
+node.</p></li>
+<li><p>Apply KCL to each of the n − 1 nonreference nodes. Use<br />
+Ohm’s law to express the branch currents in terms of<br />
+node voltages.</p></li>
+<li><p>Solve the resulting simultaneous equations to obtain<br />
+the unknown node voltages.</p></li>
+</ol>
+</section>
+<section id="circuit-example-with-injected-currents">
+<h4>Circuit example with injected currents<a class="headerlink" href="#circuit-example-with-injected-currents" title="Permalink to this heading">#</a></h4>
+<p>In the circuit, a node is any point where two or more elements are connected by ideal wires.
+From the labels shown:</p>
+<ul class="simple">
+<li><p>Node 0: the reference (ground) node connecting the bottoms of <span class="math notranslate nohighlight">\(R_1\)</span>, <span class="math notranslate nohighlight">\(R_3\)</span>, and the current source <span class="math notranslate nohighlight">\(I_1\)</span>.</p></li>
+<li><p>Node 1: connects the top of<span class="math notranslate nohighlight">\(R_1\)</span>, the left side of <span class="math notranslate nohighlight">\(R_2\)</span>, the top of <span class="math notranslate nohighlight">\(I_1\)</span>, and the left terminal of <span class="math notranslate nohighlight">\(I_2\)</span>.</p></li>
+<li><p>Node 2: connects the right side of <span class="math notranslate nohighlight">\(R_2\)</span>, the top of <span class="math notranslate nohighlight">\(R_3\)</span>, and the right terminal of <span class="math notranslate nohighlight">\(I_2\)</span>.</p></li>
+</ul>
+<p>Therefore the circuit has n = 3, 3 nodes.
+Leabing n-1 nonreference nodes of 2.</p>
+</section>
+<section id="step-1">
+<h4>Step 1<a class="headerlink" href="#step-1" title="Permalink to this heading">#</a></h4>
+<p>In the original circuit below, the first step is to choose point 0 as the reference node, and assign the 2 nonreference node voltages <span class="math notranslate nohighlight">\(v_1\)</span> and <span class="math notranslate nohighlight">\(v_2\)</span>.</p>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<img alt="../_images/41d8cef89ca2986e57256cf9a140e2966b0df109aade22f5886a3d4b3cf15a1e.png" src="../_images/41d8cef89ca2986e57256cf9a140e2966b0df109aade22f5886a3d4b3cf15a1e.png" />
+</div>
+</div>
+</section>
+<section id="step-2">
+<h4>Step 2<a class="headerlink" href="#step-2" title="Permalink to this heading">#</a></h4>
+<p>Apply KCL:
+$<span class="math notranslate nohighlight">\(I_1 = i_1 + i_2\)</span><span class="math notranslate nohighlight">\(
+\)</span><span class="math notranslate nohighlight">\(I_2+i_2=i_3\)</span>$
+We now apply Ohm’s law to express the unknown currents and
+in terms of node voltages.
+The circuit has active and passive elements in the form of injected currents and resistors. Passive elements are circuit components that cannot generate net energy. They can only absorb energy (convert it to heat, light, etc.), or store energy temporarily and later release it.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head"><p>Passive or Active?</p></th>
+<th class="head"><p>Function</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Resistor</p></td>
+<td><p>Passive</p></td>
+<td><p>Dissipates energy</p></td>
+</tr>
+<tr class="row-odd"><td><p>Capacitor</p></td>
+<td><p>Passive</p></td>
+<td><p>Stores electric-field energy</p></td>
+</tr>
+<tr class="row-even"><td><p>Inductor</p></td>
+<td><p>Passive</p></td>
+<td><p>Stores magnetic-field energy</p></td>
+</tr>
+<tr class="row-odd"><td><p>Current Source</p></td>
+<td><p>Active</p></td>
+<td><p>Can deliver energy</p></td>
+</tr>
+<tr class="row-even"><td><p>Voltage Source</p></td>
+<td><p>Active</p></td>
+<td><p>Can deliver energy</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>For the active elements such as th  current source <span class="math notranslate nohighlight">\(I_1\)</span> pushes current upward.
+If the voltage across the source is: + at top,− at bottom then the current enters the negative terminal, not the positive terminal.
+$<span class="math notranslate nohighlight">\(p=−vi\)</span>$
+A negative power indicates the source is delivering power to the circuit.</p>
+<p>For the passive elements we apply passive sign convention (PSC).
+The Passive Sign Convention (PSC) is a rule used to determine whether an element is absorbing or delivering power.</p>
+<p>If current enters the positive terminal, then
+$<span class="math notranslate nohighlight">\(p=vi\)</span>$</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(p&gt;0\)</span>: the element absorbs power (e.g., resistor, charging battery).</p></li>
+<li><p><span class="math notranslate nohighlight">\(p&lt;0\)</span>: the element delivers power (e.g., source supplying energy).</p></li>
+</ul>
+<p>Current must always flow from a higher potential to a lower potential.</p>
+<div class="math notranslate nohighlight">
+\[ i = \frac{v_{higher}-v_{lower}}{R}\]</div>
+<p>Which means that in the circuit we have:
+$<span class="math notranslate nohighlight">\( i_1 = \frac{v_1-0}{R_1}\)</span><span class="math notranslate nohighlight">\(
+\)</span><span class="math notranslate nohighlight">\( i_2 = \frac{v_1-v_2}{R_1}\)</span><span class="math notranslate nohighlight">\(
+\)</span><span class="math notranslate nohighlight">\( i_3 = \frac{v_2-0}{R_3}\)</span><span class="math notranslate nohighlight">\(
+might also be explained by conductance G: 
+\)</span><span class="math notranslate nohighlight">\( i_1 = G_1\cdot v_1\)</span><span class="math notranslate nohighlight">\(
+\)</span><span class="math notranslate nohighlight">\( i_2 = G_2(v_1-v_2)\)</span><span class="math notranslate nohighlight">\(
+\)</span><span class="math notranslate nohighlight">\( i_3 = G_2\cdot v_2\)</span>$</p>
+</section>
+<section id="step-3">
+<h4>Step 3<a class="headerlink" href="#step-3" title="Permalink to this heading">#</a></h4>
+<p>We need n-1 equations.</p>
+<p>Rearrange:</p>
+<p>equation 1: $<span class="math notranslate nohighlight">\(I_1 = I_2 +\frac{v_1}{R_1} + \frac{v_1-v_2}{R_2}\)</span>$</p>
+<p>equation 2: $<span class="math notranslate nohighlight">\(I_2+\frac{v_1-v_2}{R_2} = \frac{v_2}{R_3}\)</span>$</p>
+</section>
+</section>
+<section id="mesh-analysis">
+<h3>Mesh Analysis<a class="headerlink" href="#mesh-analysis" title="Permalink to this heading">#</a></h3>
+<p>Nodal analysis applies KCL to find unknown voltages in a given circuit, while mesh analysis applies KVL to find unknown currents.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="n">mesh</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">loop</span> <span class="n">which</span> <span class="n">does</span> <span class="ow">not</span> <span class="n">contain</span> <span class="nb">any</span> <span class="n">other</span> <span class="n">loops</span> <span class="n">within</span> <span class="n">it</span><span class="o">.</span>
+</pre></div>
+</div>
+<section id="steps-to-determine-mesh-currents">
+<h4>Steps to Determine Mesh Currents:<a class="headerlink" href="#steps-to-determine-mesh-currents" title="Permalink to this heading">#</a></h4>
+<ol class="arabic simple">
+<li><p>Assign mesh currents to the n meshes.</p></li>
+<li><p>Apply KVL to each of the n meshes. Use Ohm’s law to
+express the voltages in terms of the mesh currents.</p></li>
+<li><p>Solve the resulting n simultaneous equations to get the mesh
+currents.</p></li>
+</ol>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<img alt="../_images/dc26e81c7465175df3375c261ea617083fe3c5bb6db164299dbcede7d18fc8c3.png" src="../_images/dc26e81c7465175df3375c261ea617083fe3c5bb6db164299dbcede7d18fc8c3.png" />
+</div>
+</div>
+<ol class="arabic simple">
+<li><p>In the example above the n mesh currents is n = 2, we assign <span class="math notranslate nohighlight">\(i_1\)</span> and <span class="math notranslate nohighlight">\(i_2\)</span> to the mesh currents.</p></li>
+<li><p>Apply KVL on mesh 1: $<span class="math notranslate nohighlight">\(-15 + 5\cdot i_1 + 10(i_1-i2) + 10 = 0 \)</span><span class="math notranslate nohighlight">\(
+                        \)</span><span class="math notranslate nohighlight">\( 15\cdot i_1 -10\cdot i_2= 5 \)</span><span class="math notranslate nohighlight">\(
+                    \)</span><span class="math notranslate nohighlight">\(3\cdot i_1 -2\cdot i_2 = 1\)</span><span class="math notranslate nohighlight">\(
+Apply KVL on mesh 2: \)</span><span class="math notranslate nohighlight">\( -10 + 10(i_2-i_1) +6\cdot i_2 + 4\cdot i_2 = 0\)</span><span class="math notranslate nohighlight">\(
+                    \)</span><span class="math notranslate nohighlight">\( -10\cdot i_1 + 20\cdot i_2 = 10 \)</span><span class="math notranslate nohighlight">\(
+                    \)</span><span class="math notranslate nohighlight">\( -1\cdot i_1 + 2 \cdot i_2 = 1 \)</span><span class="math notranslate nohighlight">\(
+We have to sets of equations
+\)</span><span class="math notranslate nohighlight">\(
+\begin{aligned}
+3i_1 - 2i_2 &amp;= 1 \\
+-i_1 + 2i_2 &amp;= 1
+\end{aligned}
+\)</span>$</p></li>
+</ol>
+<p>There are 3 methods that can solve this:</p>
+<ol class="arabic simple">
+<li><p>Substitution method</p></li>
+<li><p>Cramers rule</p></li>
+<li><p>Matrix inversion</p></li>
+</ol>
+<p>We can put on standard matrix form <strong>Ai=b</strong></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{bmatrix}
+3 &amp; -2 \\
+-1 &amp; 2
+\end{bmatrix}
+\begin{bmatrix}
+i_1 \\
+i_2
+\end{bmatrix}
+=
+\begin{bmatrix}
+1 \\
+1
+\end{bmatrix}\end{split}\]</div>
+<p>And solve by matrix inversion:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">],[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]])</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">],[</span><span class="mi">1</span><span class="p">]])</span>
+<span class="n">A_inv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="n">i</span> <span class="o">=</span> <span class="n">A_inv</span> <span class="o">@</span> <span class="n">b</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The first mesh i_1=&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The second mesh i_2=&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The first mesh i_1= 1.0
+The second mesh i_2= 1.0
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./05_basic_laws"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Nils Jakob Johannesen
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
