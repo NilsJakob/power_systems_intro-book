@@ -21,6 +21,10 @@ parts:
       - file: 03_circuits/A3_basics
       #- file: 04_threephase/A4_three_phase
 
+  - caption: Electric circuits
+    chapters:
+      - file: 05_basic_laws/05_basic_laws
+      
   - caption: Referanser
     chapters:
       - file: references
