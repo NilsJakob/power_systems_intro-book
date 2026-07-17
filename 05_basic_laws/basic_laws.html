@@ -70,7 +70,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = '05_basic_laws/basic_laws';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Referanser" href="../references.html" />
+    <link rel="next" title="Mesh Analysis" href="../06_mesh/mesh_analysis.html" />
     <link rel="prev" title="Assignment A3: Basics" href="../03_circuits/A3_basics.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -183,6 +183,7 @@ const thebe_selector_output = ".output, .cell_output"
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Electric circuits</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Electric circuits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../06_mesh/mesh_analysis.html">Mesh Analysis</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Referanser</span></p>
 <ul class="nav bd-sidenav">
@@ -419,8 +420,9 @@ R = resistor</p>
 <section id="kirchhoff-s-voltage-law-kvl">
 <h3>Kirchhoff’s voltage law (KVL)<a class="headerlink" href="#kirchhoff-s-voltage-law-kvl" title="Permalink to this heading">#</a></h3>
 <p>Kirchhoff’s voltage law (KVL) states that the algebraic sum of all voltages around a closed path (or loop) is zero.
-Expressed matheatically
-$<span class="math notranslate nohighlight">\( \sum_{m=i}^M v_m = 0 \)</span>$</p>
+Expressed mathematically:</p>
+<div class="math notranslate nohighlight">
+\[ \sum_{m=i}^M v_m = 0 \]</div>
 <p>where M is the number of voltages in the loop (or the number of branches in the loop) and <span class="math notranslate nohighlight">\(v_m\)</span> is the mth voltage.</p>
 <p>The sign on each voltage is the polarity of the terminal encountered first as we
 travel around the loop. We can start with any branch and go around
@@ -430,10 +432,12 @@ the voltage source, <span class="math notranslate nohighlight">\(v_1\)</span> an
 voltages would be <span class="math notranslate nohighlight">\(-v_1+v_2+v_3\)</span> and in that order. For
 example, as we reach branch 3, the positive terminal is met first; hence,
 we have <span class="math notranslate nohighlight">\(+v_3\)</span>. For branch 4, we reach the negative terminal first; hence <span class="math notranslate nohighlight">\(-v_4\)</span>,
-Thus, KVL yields
-$<span class="math notranslate nohighlight">\(-v_1 + v_2 + v_3 -v_4 +v_5 = 0\)</span>$</p>
-<p>and rearranged:
-$<span class="math notranslate nohighlight">\(v_2+v_3+v_5 = v_1+v_4\)</span>$</p>
+Thus, KVL yields</p>
+<div class="math notranslate nohighlight">
+\[-v_1 + v_2 + v_3 -v_4 +v_5 = 0\]</div>
+<p>and rearranged:</p>
+<div class="math notranslate nohighlight">
+\[v_2+v_3+v_5 = v_1+v_4\]</div>
 <p>interpreted as: <strong>Sum of voltage drops = Sum of voltage rises</strong></p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
@@ -497,9 +501,10 @@ Leabing n-1 nonreference nodes of 2.</p>
 <section id="step-2">
 <h4>Step 2<a class="headerlink" href="#step-2" title="Permalink to this heading">#</a></h4>
 <p>Apply KCL:
-$<span class="math notranslate nohighlight">\(I_1 = i_1 + i_2\)</span><span class="math notranslate nohighlight">\(
-\)</span><span class="math notranslate nohighlight">\(I_2+i_2=i_3\)</span>$
-We now apply Ohm’s law to express the unknown currents and
+$<span class="math notranslate nohighlight">\(I_1 = i_1 + i_2\)</span>$</p>
+<div class="math notranslate nohighlight">
+\[I_2+i_2=i_3\]</div>
+<p>We now apply Ohm’s law to express the unknown currents and
 in terms of node voltages.
 The circuit has active and passive elements in the form of injected currents and resistors. Passive elements are circuit components that cannot generate net energy. They can only absorb energy (convert it to heat, light, etc.), or store energy temporarily and later release it.</p>
 <div class="pst-scrollable-table-container"><table class="table">
@@ -534,13 +539,15 @@ The circuit has active and passive elements in the form of injected currents and
 </table>
 </div>
 <p>For the active elements such as th  current source <span class="math notranslate nohighlight">\(I_1\)</span> pushes current upward.
-If the voltage across the source is: + at top,− at bottom then the current enters the negative terminal, not the positive terminal.
-$<span class="math notranslate nohighlight">\(p=−vi\)</span>$
-A negative power indicates the source is delivering power to the circuit.</p>
+If the voltage across the source is: + at top,− at bottom then the current enters the negative terminal, not the positive terminal.</p>
+<div class="math notranslate nohighlight">
+\[p=−vi\]</div>
+<p>A negative power indicates the source is delivering power to the circuit.</p>
 <p>For the passive elements we apply passive sign convention (PSC).
 The Passive Sign Convention (PSC) is a rule used to determine whether an element is absorbing or delivering power.</p>
-<p>If current enters the positive terminal, then
-$<span class="math notranslate nohighlight">\(p=vi\)</span>$</p>
+<p>If current enters the positive terminal, then</p>
+<div class="math notranslate nohighlight">
+\[p=vi\]</div>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(p&gt;0\)</span>: the element absorbs power (e.g., resistor, charging battery).</p></li>
 <li><p><span class="math notranslate nohighlight">\(p&lt;0\)</span>: the element delivers power (e.g., source supplying energy).</p></li>
@@ -548,14 +555,20 @@ $<span class="math notranslate nohighlight">\(p=vi\)</span>$</p>
 <p>Current must always flow from a higher potential to a lower potential.</p>
 <div class="math notranslate nohighlight">
 \[ i = \frac{v_{higher}-v_{lower}}{R}\]</div>
-<p>Which means that in the circuit we have:
-$<span class="math notranslate nohighlight">\( i_1 = \frac{v_1-0}{R_1}\)</span><span class="math notranslate nohighlight">\(
-\)</span><span class="math notranslate nohighlight">\( i_2 = \frac{v_1-v_2}{R_1}\)</span><span class="math notranslate nohighlight">\(
-\)</span><span class="math notranslate nohighlight">\( i_3 = \frac{v_2-0}{R_3}\)</span><span class="math notranslate nohighlight">\(
-might also be explained by conductance G: 
-\)</span><span class="math notranslate nohighlight">\( i_1 = G_1\cdot v_1\)</span><span class="math notranslate nohighlight">\(
-\)</span><span class="math notranslate nohighlight">\( i_2 = G_2(v_1-v_2)\)</span><span class="math notranslate nohighlight">\(
-\)</span><span class="math notranslate nohighlight">\( i_3 = G_2\cdot v_2\)</span>$</p>
+<p>Which means that in the circuit we have:</p>
+<div class="math notranslate nohighlight">
+\[ i_1 = \frac{v_1-0}{R_1}\]</div>
+<div class="math notranslate nohighlight">
+\[ i_2 = \frac{v_1-v_2}{R_1}\]</div>
+<div class="math notranslate nohighlight">
+\[ i_3 = \frac{v_2-0}{R_3}\]</div>
+<p>might also be explained by conductance G:</p>
+<div class="math notranslate nohighlight">
+\[ i_1 = G_1\cdot v_1\]</div>
+<div class="math notranslate nohighlight">
+\[ i_2 = G_2(v_1-v_2)\]</div>
+<div class="math notranslate nohighlight">
+\[ i_3 = G_2\cdot v_2\]</div>
 </section>
 <section id="step-3">
 <h4>Step 3<a class="headerlink" href="#step-3" title="Permalink to this heading">#</a></h4>
@@ -587,20 +600,27 @@ currents.</p></li>
 </div>
 <ol class="arabic simple">
 <li><p>In the example above the n mesh currents is n = 2, we assign <span class="math notranslate nohighlight">\(i_1\)</span> and <span class="math notranslate nohighlight">\(i_2\)</span> to the mesh currents.</p></li>
-<li><p>Apply KVL on mesh 1: $<span class="math notranslate nohighlight">\(-15 + 5\cdot i_1 + 10(i_1-i2) + 10 = 0 \)</span><span class="math notranslate nohighlight">\(
-                        \)</span><span class="math notranslate nohighlight">\( 15\cdot i_1 -10\cdot i_2= 5 \)</span><span class="math notranslate nohighlight">\(
-                    \)</span><span class="math notranslate nohighlight">\(3\cdot i_1 -2\cdot i_2 = 1\)</span><span class="math notranslate nohighlight">\(
-Apply KVL on mesh 2: \)</span><span class="math notranslate nohighlight">\( -10 + 10(i_2-i_1) +6\cdot i_2 + 4\cdot i_2 = 0\)</span><span class="math notranslate nohighlight">\(
-                    \)</span><span class="math notranslate nohighlight">\( -10\cdot i_1 + 20\cdot i_2 = 10 \)</span><span class="math notranslate nohighlight">\(
-                    \)</span><span class="math notranslate nohighlight">\( -1\cdot i_1 + 2 \cdot i_2 = 1 \)</span><span class="math notranslate nohighlight">\(
-We have to sets of equations
-\)</span><span class="math notranslate nohighlight">\(
+<li><p>Apply KVL on mesh 1:</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[-15 + 5\cdot i_1 + 10(i_1-i2) + 10 = 0 \]</div>
+<div class="math notranslate nohighlight">
+\[ 15\cdot i_1 -10\cdot i_2= 5 \]</div>
+<div class="math notranslate nohighlight">
+\[3\cdot i_1 -2\cdot i_2 = 1\]</div>
+<p>Apply KVL on mesh 2:
+$<span class="math notranslate nohighlight">\( -10 + 10(i_2-i_1) +6\cdot i_2 + 4\cdot i_2 = 0\)</span>$</p>
+<div class="math notranslate nohighlight">
+\[ -10\cdot i_1 + 20\cdot i_2 = 10 \]</div>
+<div class="math notranslate nohighlight">
+\[ -1\cdot i_1 + 2 \cdot i_2 = 1 \]</div>
+<p>We have to sets of equations
+$<span class="math notranslate nohighlight">\(
 \begin{aligned}
 3i_1 - 2i_2 &amp;= 1 \\
 -i_1 + 2i_2 &amp;= 1
 \end{aligned}
-\)</span>$</p></li>
-</ol>
+\)</span>$</p>
 <p>There are 3 methods that can solve this:</p>
 <ol class="arabic simple">
 <li><p>Substitution method</p></li>
