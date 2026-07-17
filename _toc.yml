@@ -24,7 +24,7 @@ parts:
   - caption: Electric circuits
     chapters:
       - file: 05_basic_laws/basic_laws
-      - file 06_mesh/mesh_analysis
+      - file: 06_mesh/mesh_analysis
 
   - caption: Referanser
     chapters:
