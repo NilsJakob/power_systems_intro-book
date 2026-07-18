@@ -5,6 +5,9 @@ options:
   numbered: true
 
 parts:
+  - caption: Preface
+    chapters:
+      - file: 00_preface/preface
 
   - caption: Introduction
     chapters:
