@@ -65,6 +65,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '06_mesh/mesh_analysis';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -343,7 +345,80 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="mesh-analysis">
 <h1>Mesh Analysis<a class="headerlink" href="#mesh-analysis" title="Permalink to this heading">#</a></h1>
-<p>This page will soon be updated with tasks using mesh analysis</p>
+<p>Solve the following circuit using mesh analysis:</p>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<img alt="../_images/c38e48908da5ae8d56a21ac5613145fa72aef3b6a9e89aff4bb43cd207e77dc7.png" src="../_images/c38e48908da5ae8d56a21ac5613145fa72aef3b6a9e89aff4bb43cd207e77dc7.png" />
+</div>
+</div>
+<ol class="arabic simple">
+<li><p>In the example above the n mesh currents is n = 2, we assign <span class="math notranslate nohighlight">\(i_1\)</span> and <span class="math notranslate nohighlight">\(i_2\)</span> to the mesh currents.</p></li>
+<li><p>Apply KVL on mesh 1:</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[-45 + 2\cdot i_1 + 12(i_1-i2) + 4\cdot i_1 = 0 \]</div>
+<div class="math notranslate nohighlight">
+\[ 18\cdot i_1 -12\cdot i_2= 45 \]</div>
+<div class="math notranslate nohighlight">
+\[6\cdot i_1 -4\cdot i_2 = 15\]</div>
+<p>Apply KVL on mesh 2:
+$<span class="math notranslate nohighlight">\( 12(i_2-i_1) +9\cdot i_2 + 30 + 3\cdot i_2 = 0\)</span>$</p>
+<div class="math notranslate nohighlight">
+\[ -12\cdot i_1 + 24\cdot i_2 = -30 \]</div>
+<div class="math notranslate nohighlight">
+\[ -2\cdot i_1 + 4 \cdot i_2 = -5 \]</div>
+<p>We have to sets of equations
+$<span class="math notranslate nohighlight">\(
+\begin{aligned}
+6i_1 - 4i_2 &amp;= 15 \\
+-2i_1 + 4i_2 &amp;= -5
+\end{aligned}
+\)</span>$</p>
+<p>There are 3 methods that can solve this:</p>
+<ol class="arabic simple">
+<li><p>Substitution method</p></li>
+<li><p>Cramers rule</p></li>
+<li><p>Matrix inversion</p></li>
+</ol>
+<p>We can put on standard matrix form <strong>Ai=b</strong></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{bmatrix}
+6 &amp; -4 \\
+-2 &amp; 4
+\end{bmatrix}
+\begin{bmatrix}
+i_1 \\
+i_2
+\end{bmatrix}
+=
+\begin{bmatrix}
+15\\
+-5
+\end{bmatrix}\end{split}\]</div>
+<p>And solve by matrix inversion:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">6</span><span class="p">,</span> <span class="o">-</span><span class="mi">4</span><span class="p">],[</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">]])</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">15</span><span class="p">],[</span><span class="o">-</span><span class="mi">5</span><span class="p">]])</span>
+<span class="n">A_inv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="n">i</span> <span class="o">=</span> <span class="n">A_inv</span> <span class="o">@</span> <span class="n">b</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Given matrix A:&#39;</span><span class="p">,</span> <span class="n">A</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The first mesh i_1=&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span><span class="mi">2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The second mesh i_2=&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Given matrix A: [[ 6 -4]
+ [-2  4]]
+The first mesh i_1= 2.5
+The second mesh i_2= -0.0
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 
     <script type="text/x-thebe-config">
