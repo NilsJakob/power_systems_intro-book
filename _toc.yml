@@ -26,6 +26,7 @@ parts:
 
   - caption: Electric circuits
     chapters:
+      - file: 05_a_history_intro/electric_power_timeline
       - file: 05_basic_laws/basic_laws
       - file: 06_mesh/mesh_analysis
 
