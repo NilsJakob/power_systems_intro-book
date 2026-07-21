@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Basic representations &#8212; Electrical Power Systems Introduction</title>
+    <title>Thevenin’s theorem &#8212; Electrical Power Systems Introduction</title>
   
   
   
@@ -65,13 +65,11 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = '03_circuits/representations';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '08_thevenin/thevenins_theorem';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Three-Phase Circuits" href="../04_threephase/threephase.html" />
-    <link rel="prev" title="Fundamentals" href="../02_fundamentals/fundamentals.html" />
+    <link rel="next" title="Referanser" href="../references.html" />
+    <link rel="prev" title="Mesh Analysis" href="../06_mesh/mesh_analysis.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -175,14 +173,14 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../01_introduction/A1_power_system_data.html">Assignment A1: Power System Data</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Fundamentals</span></p>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../02_fundamentals/fundamentals.html">Fundamentals</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Basic representations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_circuits/representations.html">Basic representations</a></li>
 
 
 <li class="toctree-l1"><a class="reference internal" href="../04_threephase/threephase.html">Three-Phase Circuits</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../02_fundamentals/A2_fundamentals.html">Assignment A2: Fundamentals of Electrical Power Systems</a></li>
-<li class="toctree-l1"><a class="reference internal" href="A3_basics.html">Assignment A3: Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_circuits/A3_basics.html">Assignment A3: Basics</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Electric circuits</span></p>
 <ul class="nav bd-sidenav">
@@ -191,8 +189,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../06_mesh/mesh_analysis.html">Mesh Analysis</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Circuit Theorems</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../08_thevenin/thevenins_theorem.html">Thevenin’s theorem</a></li>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Thevenin’s theorem</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Referanser</span></p>
 <ul class="nav bd-sidenav">
@@ -251,7 +249,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../_sources/03_circuits/representations.ipynb" target="_blank"
+      <li><a href="../_sources/08_thevenin/thevenins_theorem.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -322,9 +320,7 @@ document.write(`
   </button>
 `);
 </script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="fa-solid fa-list"></span>
-</label>
+
 </div></div>
       
     </div>
@@ -335,22 +331,11 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Basic representations</h1>
+    <h1>Thevenin’s theorem</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
-            <div>
-                <h2> Contents </h2>
-            </div>
-            <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Basic representations</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#phasor-convertions">Phasor convertions</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#impedance-triangle">Impedance triangle</a></li>
-</ul>
-
-            </nav>
         </div>
     </div>
 </div>
@@ -360,52 +345,10 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <div class="cell tag_remove-input tag_hide-input docutils container">
-<div class="cell_output docutils container">
-<script type="application/javascript">
-setTimeout(function() {
-    document.querySelectorAll('.jp-CodeCell').forEach(cell => {
-        if (cell.innerText.includes("# FEEDBACK CELL") ||
-            cell.innerText.includes("# SCORE CELL")) {
-
-            const btn = cell.querySelector('[title="Collapse Input"]');
-            if (btn) {
-                btn.click();
-            }
-        }
-    });
-}, 800);
-</script></div>
-</div>
-<section class="tex2jax_ignore mathjax_ignore" id="basic-representations">
-<h1>Basic representations<a class="headerlink" href="#basic-representations" title="Permalink to this heading">#</a></h1>
-<p>Knowing the angular freqency, <span class="math notranslate nohighlight">\(\omega\)</span>, a phasor can be re-transformed into the time-domain.</p>
-<p>Phasors lets us convert differential equations into algebraic equations using complex variables.</p>
-<p>To calculate the current in the figure below it is solved in the time-domain using differential equations:</p>
-<div class="math notranslate nohighlight">
-\[ Ri(t) + L\frac{di}{dt} +\frac{1}{C}\int i(t) dt = \sqrt{2} V cos(\omega t)\]</div>
-<div class="cell tag_remove-input docutils container">
-<div class="cell_output docutils container">
-<img alt="../_images/099d866601624ab114bba850d46d1f1f1b925e211254b89b46807142c41d628d.svg" src="../_images/099d866601624ab114bba850d46d1f1f1b925e211254b89b46807142c41d628d.svg" /></div>
-</div>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="phasor-convertions">
-<h1>Phasor convertions<a class="headerlink" href="#phasor-convertions" title="Permalink to this heading">#</a></h1>
-<p>We can redraw the circuit using phasors; the inductance L is represented by <span class="math notranslate nohighlight">\(j\omega L\)</span> and capacitance C by <span class="math notranslate nohighlight">\(j(\frac{1}{-\omega C})\)</span></p>
-<div class="math notranslate nohighlight">
-\[ R + jX_L - jX_C\]</div>
-<div class="cell tag_remove-input docutils container">
-<div class="cell_output docutils container">
-<img alt="../_images/142eecb64d4baa6af4445d8241a11c926f3ddf71b44937bb5bdfbe277b80fe0a.svg" src="../_images/142eecb64d4baa6af4445d8241a11c926f3ddf71b44937bb5bdfbe277b80fe0a.svg" /></div>
-</div>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="impedance-triangle">
-<h1>Impedance triangle<a class="headerlink" href="#impedance-triangle" title="Permalink to this heading">#</a></h1>
-<p>The impedance triangle illustrates the effect of inductance and capacitance on the impedance</p>
-<div class="cell tag_remove-input docutils container">
-<div class="cell_output docutils container">
-<img alt="../_images/1d9cc2bad6963cc4b476334defa0b02820be292b7da81cfe4be69ad74cd43425.svg" src="../_images/1d9cc2bad6963cc4b476334defa0b02820be292b7da81cfe4be69ad74cd43425.svg" /></div>
-</div>
+  <section class="tex2jax_ignore mathjax_ignore" id="thevenin-s-theorem">
+<h1>Thevenin’s theorem<a class="headerlink" href="#thevenin-s-theorem" title="Permalink to this heading">#</a></h1>
+<p>A circuit is variable might be variable while other elements are fixed. A household outlet terminal may be connected to different
+appliances constituting a variable load. To avoid reanalysing each time a variable element is changed, Thevenin’s theorem provides a technique by which the fixed part of the circuit is replaced by an equivalent circuit.</p>
 </section>
 
     <script type="text/x-thebe-config">
@@ -421,7 +364,7 @@ setTimeout(function() {
         },
         kernelOptions: {
             name: "python3",
-            path: "./03_circuits"
+            path: "./08_thevenin"
         },
         predefinedOutput: true
     }
