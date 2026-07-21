@@ -32,7 +32,7 @@ parts:
 
   - caption: Circuit Theorems
     chapters: 
-      - file: 07_circuit_theorems/circuit_theorems
+      - file: 07_circuit_theorems/intro_theorem
       - file: 08_thevenin/thevenins_theorem
 
   - caption: Referanser
