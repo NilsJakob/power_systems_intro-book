@@ -30,6 +30,10 @@ parts:
       - file: 05_basic_laws/basic_laws
       - file: 06_mesh/mesh_analysis
 
+  - caption: Circuit Theorems
+    chapters: 
+      - file: 07_circuit_theorems/circuit_theorems
+
   - caption: Referanser
     chapters:
       - file: references
