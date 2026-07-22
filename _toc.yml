@@ -8,6 +8,7 @@ parts:
   - caption: Preface
     chapters:
       - file: 00_preface/preface
+      - file: 00_preface/author
 
   - caption: Introduction
     chapters:
