@@ -7,11 +7,13 @@ options:
 parts:
   - caption: Preface
     chapters:
-      - file: 00_preface/preface
       - file: 00_preface/author
+      - file: 00_preface/preface
+      
 
   - caption: Introduction
     chapters:
+      - file: 01_introduction/build_vs_buy
       - file: 01_introduction/introduction
       - file: 01_introduction/power_system_data
       - file: 01_introduction/A1_power_system_data
