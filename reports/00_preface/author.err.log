@@ -1,0 +1,254 @@
+Traceback (most recent call last):
+  File "/opt/hostedtoolcache/Python/3.10.20/x64/lib/python3.10/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/opt/hostedtoolcache/Python/3.10.20/x64/lib/python3.10/site-packages/nbclient/client.py", line 1305, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/opt/hostedtoolcache/Python/3.10.20/x64/lib/python3.10/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+  File "/opt/hostedtoolcache/Python/3.10.20/x64/lib/python3.10/asyncio/base_events.py", line 649, in run_until_complete
+    return future.result()
+  File "/opt/hostedtoolcache/Python/3.10.20/x64/lib/python3.10/site-packages/nbclient/client.py", line 705, in async_execute
+    await self.async_execute_cell(
+  File "/opt/hostedtoolcache/Python/3.10.20/x64/lib/python3.10/site-packages/nbclient/client.py", line 1058, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/opt/hostedtoolcache/Python/3.10.20/x64/lib/python3.10/site-packages/nbclient/client.py", line 914, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+# TEST CELL
+import geopandas as gpd
+import matplotlib.pyplot as plt
+from matplotlib.offsetbox import OffsetImage, AnnotationBbox
+from PIL import Image
+
+import geopandas as gpd
+
+url = "https://raw.githubusercontent.com/robhop/fylker-og-kommuner/master/Norge-M.geojson"
+
+norge = gpd.read_file(url)
+
+fig, ax = plt.subplots(figsize=(12, 14))
+
+norge.plot(
+    ax=ax,
+    color="lightgrey",
+    edgecolor="black"
+)
+
+# Lokasjoner og logoer
+lokasjoner = {
+    "Grimstad": {
+        "lon": 8.5934,
+        "lat": 58.3405,
+        "logo": "../images/uia_logo.png",
+        "zoom": 0.14,
+        "logo_dx": 4,
+        "logo_dy": -0.5,
+        "text_dx": 0.0,
+        "text_dy": -0.5
+    },
+     "Porsgrunn": {
+        "lon": 9.6561,
+        "lat": 59.1405,
+        "logo": "../images/usn_logo.png",
+        "zoom": 0.2,
+        "logo_dx": 3.3,
+        "logo_dy": 0.0,
+        "text_dx": 0.50,
+        "text_dy": -0.3
+    },
+    "Narvik": {
+        "lon": 17.4273,
+        "lat": 68.4385,
+        "logo": "../images/uit_logo.png",
+        "zoom": 0.14,
+        "logo_dx": -2.25,
+        "logo_dy": 1.5,
+        "text_dx": 0.5,
+        "text_dy": -0.5
+    },
+    "Stavanger": {
+        "lon": 5.7331,
+        "lat": 58.9699,
+        "logo": "../images/uis_logo.png",
+        "zoom": 0.075,
+        "logo_dx": -2.55,
+        "logo_dy": 0.5,
+        "text_dx": 0.45,
+        "text_dy": -0.25
+    }
+}
+
+#Løkke:
+
+def legg_til_logo(ax, x, y, logo_fil, zoom=0.075):
+    img = Image.open(logo_fil)
+    imagebox = OffsetImage(img, zoom=zoom)
+    ab = AnnotationBbox(imagebox, (x, y), frameon=False)
+    ax.add_artist(ab)
+
+for navn, data in lokasjoner.items():
+    ax.scatter(
+        data["lon"],
+        data["lat"],
+        s=100,
+        color="red",
+        edgecolor="black",
+        linewidth=1,
+        zorder=10
+    )
+
+    legg_til_logo(
+        ax,
+        data["lon"] + data["logo_dx"],
+        data["lat"] + data["logo_dy"],
+        data["logo"],
+        zoom=data["zoom"]
+    )
+
+    ax.text(
+        data["lon"] + data["text_dx"],
+        data["lat"] + data["text_dy"],
+        navn,
+        ha="center",
+        fontsize=10,
+        fontweight="bold"
+)
+    
+tekst = """Research Area:
+
+• Electrical Load Demand Forecasting
+• Demand Side Management and Flexibility in Smart Grid
+• Integration of Renewable Energy
+• Anomaly Detection
+• Condition Based Monitoring
+"""
+
+ax.text(
+    -0.1,
+    0.97,
+    tekst,
+    transform=ax.transAxes,
+    va="top",
+    fontsize=9,
+    bbox=dict(
+        boxstyle="round,pad=0.5",
+        facecolor="white",
+        edgecolor="black",
+        alpha=0.5
+    )
+)
+
+tekst = """UiT Narvik:
+
+• Systemdrift og vern
+
+A course that focuses on:
+Operation, mangagement and protection of the grid
+
+"""
+
+ax.text(
+    0.7,
+    0.75,
+    tekst,
+    transform=ax.transAxes,
+    va="top",
+    fontsize=9,
+    bbox=dict(
+        boxstyle="round,pad=0.5",
+        facecolor="white",
+        edgecolor="black",
+        alpha=0.5
+    )
+)
+
+tekst = """USN Porsgrunn:
+
+• Programme Coordinator Bsc
+• TSE2220 Elektriske kraftsystenmer
+• TSE3080 Electrical MAchines
+• EPE2316 Electric Power Analysis
+"""
+
+ax.text(
+    0.7,
+    0.55,
+    tekst,
+    transform=ax.transAxes,
+    va="top",
+    fontsize=9,
+    bbox=dict(
+        boxstyle="round,pad=0.5",
+        facecolor="white",
+        edgecolor="black",
+        alpha=0.5
+    )
+)
+
+tekst = """UiA Grimstad:
+
+• ENE411 Power System Dynamics
+
+A course that focuses on:
+Stability of the power system 
+
+"""
+
+ax.text(
+    0.7,
+    0.4,
+    tekst,
+    transform=ax.transAxes,
+    va="top",
+    fontsize=9,
+    bbox=dict(
+        boxstyle="round,pad=0.5",
+        facecolor="white",
+        edgecolor="black",
+        alpha=0.5
+    )
+)
+
+tekst = """UiS:
+
+• ELK330 Elektriske anlegg og installasjoner 2
+
+A course that focuses on:
+Dynamics of the power system 
+
+"""
+
+ax.text(
+    0.7,
+    0.25,
+    tekst,
+    transform=ax.transAxes,
+    va="top",
+    fontsize=9,
+    bbox=dict(
+        boxstyle="round,pad=0.5",
+        facecolor="white",
+        edgecolor="black",
+        alpha=0.5
+    )
+)
+#ax.set_title("Universitetslokasjoner i Norge", fontsize=16, fontweight="bold")
+ax.set_axis_off()
+
+plt.tight_layout()
+plt.show()
+
+------------------
+
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
+Cell [0;32mIn[1], line 2[0m
+[1;32m      1[0m [38;5;66;03m# TEST CELL[39;00m
+[0;32m----> 2[0m [38;5;28;01mimport[39;00m[38;5;250m [39m[38;5;21;01mgeopandas[39;00m[38;5;250m [39m[38;5;28;01mas[39;00m[38;5;250m [39m[38;5;21;01mgpd[39;00m
+[1;32m      3[0m [38;5;28;01mimport[39;00m[38;5;250m [39m[38;5;21;01mmatplotlib[39;00m[38;5;21;01m.[39;00m[38;5;21;01mpyplot[39;00m[38;5;250m [39m[38;5;28;01mas[39;00m[38;5;250m [39m[38;5;21;01mplt[39;00m
+[1;32m      4[0m [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;21;01mmatplotlib[39;00m[38;5;21;01m.[39;00m[38;5;21;01moffsetbox[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m OffsetImage, AnnotationBbox
+
+[0;31mModuleNotFoundError[0m: No module named 'geopandas'
+
