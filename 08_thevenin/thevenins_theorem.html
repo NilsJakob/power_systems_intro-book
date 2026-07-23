@@ -197,6 +197,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../07_circuit_theorems/intro_theorem.html">Circuit Theorems</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Thevenin’s theorem</a></li>
 
+
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Referanser</span></p>
 <ul class="nav bd-sidenav">
@@ -361,10 +362,14 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-find-thevenin-resistance-rth">Step 2: Find Thevenin Resistance (Rth)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#final-answer">Final Answer</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#thevenin-equivalent-circuit">Thevenin Equivalent Circuit</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#final-answer">Final Answer</a></li>
 </ul>
 </li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#thevenin-equivalent-using-nodal-analysis">Thevenin Equivalent Using Nodal Analysis</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-remove-the-1-load">Step 1: Remove the 1 Ω Load</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-apply-kcl-at-node-v-2">Step 2: Apply KCL at Node <span class="math notranslate nohighlight">\(V_2\)</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-apply-kcl-at-node-a">Step 3: Apply KCL at Node (a)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-solve-the-system">Step 4: Solve the System</a></li>
 </ul>
 </li>
 </ul>
@@ -514,14 +519,169 @@ Rth = 4 Ω
 Rth = 4 Ω
 </pre></div>
 </div>
-<section id="thevenin-equivalent-circuit">
-<h3>Thevenin Equivalent Circuit<a class="headerlink" href="#thevenin-equivalent-circuit" title="Permalink to this heading">#</a></h3>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>      +30 V
- a o----( )----/\/\/----o b
-               4 Ω
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<img alt="../_images/9969a355c6c93c75bf7940c74b2fb4998d2aabf73fd44a3ed03ea6bba1859341.png" src="../_images/9969a355c6c93c75bf7940c74b2fb4998d2aabf73fd44a3ed03ea6bba1859341.png" />
+</div>
+</div>
+<p>Equation 1:</p>
+<p>We have a supermesh:</p>
+<p>Eq 1:</p>
+<div class="math notranslate nohighlight">
+\[ -12 + 6\cdot i_1 + 6\cdot i_2 + 4\cdot i_2 = 0 \]</div>
+<div class="math notranslate nohighlight">
+\[ 6\cdot i_1 + 10\cdot i_2 = 12 \]</div>
+<p>Eq 2:</p>
+<div class="math notranslate nohighlight">
+\[ i_2 = i_1 + 2 \]</div>
+<div class="math notranslate nohighlight">
+\[ -i_1 + i_2 = 2 \]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{bmatrix}
+6 &amp; 10 \\
+-1 &amp; 1
+\end{bmatrix}
+\begin{bmatrix}
+i_1 \\
+i_2
+\end{bmatrix}
+=
+\begin{bmatrix}
+12\\
+2
+\end{bmatrix}
+\end{split}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">],[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]])</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">6</span><span class="p">],[</span><span class="mi">2</span><span class="p">]])</span>
+<span class="n">A_inv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="n">i</span> <span class="o">=</span> <span class="n">A_inv</span> <span class="o">@</span> <span class="n">b</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Given matrix A:&#39;</span><span class="p">,</span> <span class="n">A</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The first mesh i_1=&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span><span class="mi">2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The second mesh i_2=&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span><span class="mi">2</span><span class="p">))</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Given matrix A: [[ 3  5]
+ [-1  1]]
+The first mesh i_1= -0.5
+The second mesh i_2= 1.5
+</pre></div>
+</div>
+</div>
+</div>
+<p>With the load removed, the voltage at terminal a is the voltage across the 4 Ω resistor:</p>
+<div class="math notranslate nohighlight">
+\[V_{TH} = 4\cdot i_2\]</div>
+<div class="math notranslate nohighlight">
+\[V_{TH} = 4\Omega \cdot 1.5A= 6V\]</div>
+<p>When the sources are short-curcuited, we find <span class="math notranslate nohighlight">\(R_{TH}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[R_{TH} = 4 || (6+6) = \frac{4\cdot12}{4+12} = \frac{48}{16} = 3\Omega\]</div>
+<p>Reconnect the <span class="math notranslate nohighlight">\(1\Omega\)</span> load-resistor and find the current through the load:</p>
+<div class="math notranslate nohighlight">
+\[I = \frac{V_{th}}{R_{th} + 1\Omega}\]</div>
+<div class="math notranslate nohighlight">
+\[I = \frac{6}{3 + 1}\]</div>
+<div class="math notranslate nohighlight">
+\[I = 1.5 A\]</div>
 </section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="thevenin-equivalent-using-nodal-analysis">
+<h1>Thevenin Equivalent Using Nodal Analysis<a class="headerlink" href="#thevenin-equivalent-using-nodal-analysis" title="Permalink to this heading">#</a></h1>
+<p>To find the Thevenin equivalent seen by the 1 Ω resistor, remove the 1 Ω resistor and determine:</p>
+<ul class="simple">
+<li><p>Thevenin voltage: (V_{th})</p></li>
+<li><p>Thevenin resistance: (R_{th})</p></li>
+</ul>
+<hr class="docutils" />
+<section id="step-1-remove-the-1-load">
+<h2>Step 1: Remove the 1 Ω Load<a class="headerlink" href="#step-1-remove-the-1-load" title="Permalink to this heading">#</a></h2>
+<p>Let node (b) be the reference node:</p>
+<div class="math notranslate nohighlight">
+\[
+V_b = 0
+\]</div>
+<p>Define the node voltages:</p>
+<ul class="simple">
+<li><p>Left node: <span class="math notranslate nohighlight">\(V_1 = 12\text{ V}\)</span></p></li>
+<li><p>Middle node: <span class="math notranslate nohighlight">\(V_2\)</span> between the two <span class="math notranslate nohighlight">\(6\Omega\)</span> resistors</p></li>
+<li><p>Output node: <span class="math notranslate nohighlight">\(V_a\)</span></p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="step-2-apply-kcl-at-node-v-2">
+<h2>Step 2: Apply KCL at Node <span class="math notranslate nohighlight">\(V_2\)</span><a class="headerlink" href="#step-2-apply-kcl-at-node-v-2" title="Permalink to this heading">#</a></h2>
+<div class="math notranslate nohighlight">
+\[
+\frac{V_2-12}{6}+\frac{V_2-V_a}{6}-2=0
+\]</div>
+<p>Multiply through by 6:</p>
+<div class="math notranslate nohighlight">
+\[
+(V_2-12)+(V_2-V_a)-12=0
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+2V_2 - V_a = 24
+\]</div>
+</section>
+<hr class="docutils" />
+<section id="step-3-apply-kcl-at-node-a">
+<h2>Step 3: Apply KCL at Node (a)<a class="headerlink" href="#step-3-apply-kcl-at-node-a" title="Permalink to this heading">#</a></h2>
+<div class="math notranslate nohighlight">
+\[
+\frac{V_a-V_2}{6}+\frac{V_a}{4}=0
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+5V_a-2V_2=0
+\]</div>
+</section>
+<hr class="docutils" />
+<section id="step-4-solve-the-system">
+<h2>Step 4: Solve the System<a class="headerlink" href="#step-4-solve-the-system" title="Permalink to this heading">#</a></h2>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{bmatrix}
+2 &amp; -1 \\
+-2 &amp; 5
+\end{bmatrix}
+\begin{bmatrix}
+V_2 \\
+V_a
+\end{bmatrix}
+=
+\begin{bmatrix}
+24 \\
+0
+\end{bmatrix}
+\end{split}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],[</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">]])</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">24</span><span class="p">],[</span><span class="mi">0</span><span class="p">]])</span>
+<span class="n">A_inv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="n">i</span> <span class="o">=</span> <span class="n">A_inv</span> <span class="o">@</span> <span class="n">b</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Given matrix A:&#39;</span><span class="p">,</span> <span class="n">A</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The first node voltage v_2=&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span><span class="mi">2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The second voltage v_a = v_th=&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Given matrix A: [[ 2 -1]
+ [-2  5]]
+The first node voltage v_2= 15.0
+The second voltage v_a = v_th= 6.0
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 </section>
 
