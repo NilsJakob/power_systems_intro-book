@@ -65,6 +65,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '08_thevenin/thevenins_theorem';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -194,6 +196,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../07_circuit_theorems/intro_theorem.html">Circuit Theorems</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Thevenin’s theorem</a></li>
+
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Referanser</span></p>
 <ul class="nav bd-sidenav">
@@ -323,7 +326,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -339,6 +344,32 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Thevenin’s theorem</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-thevenin-equivalents-in-fault-analysis">Using Thevenin equivalents in fault analysis</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#thevenin-equivalent-using-mesh-analysis">Thevenin Equivalent Using Mesh Analysis</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-find-thevenin-voltage-vth">Step 1: Find Thevenin Voltage (Vth)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#define-mesh-currents">Define Mesh Currents</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mesh-1-equation-kvl">Mesh 1 Equation (KVL)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calculate-open-circuit-voltage">Calculate Open-Circuit Voltage</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-find-thevenin-resistance-rth">Step 2: Find Thevenin Resistance (Rth)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#final-answer">Final Answer</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#thevenin-equivalent-circuit">Thevenin Equivalent Circuit</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -352,6 +383,146 @@ document.write(`
 <h1>Thevenin’s theorem<a class="headerlink" href="#thevenin-s-theorem" title="Permalink to this heading">#</a></h1>
 <p>A circuit is variable might be variable while other elements are fixed. A household outlet terminal may be connected to different
 appliances constituting a variable load. To avoid reanalysing each time a variable element is changed, Thevenin’s theorem provides a technique by which the fixed part of the circuit is replaced by an equivalent circuit.</p>
+<section id="using-thevenin-equivalents-in-fault-analysis">
+<h2>Using Thevenin equivalents in fault analysis<a class="headerlink" href="#using-thevenin-equivalents-in-fault-analysis" title="Permalink to this heading">#</a></h2>
+<p>Thevenin equivalents are widely used in power system fault analysis because they simplify a complex network into a single voltage source and impedance seen from the fault location.</p>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<img alt="../_images/f16e9d16b1423e5e00ed81ea5fcfb20a61fe018886210dba7acbc8d04febcd0c.png" src="../_images/f16e9d16b1423e5e00ed81ea5fcfb20a61fe018886210dba7acbc8d04febcd0c.png" />
+</div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="thevenin-equivalent-using-mesh-analysis">
+<h1>Thevenin Equivalent Using Mesh Analysis<a class="headerlink" href="#thevenin-equivalent-using-mesh-analysis" title="Permalink to this heading">#</a></h1>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Circuit:
+- 32 V independent voltage source
+- 4 Ω resistor
+- 12 Ω resistor
+- 2 A current source
+- 1 Ω resistor to terminal a
+- Find Thevenin equivalent at terminals a-b
+</pre></div>
+</div>
+<section id="step-1-find-thevenin-voltage-vth">
+<h2>Step 1: Find Thevenin Voltage (Vth)<a class="headerlink" href="#step-1-find-thevenin-voltage-vth" title="Permalink to this heading">#</a></h2>
+<p>Remove the load RL.</p>
+<p>Since RL is removed, no current flows through the 1 Ω resistor, therefore:</p>
+<div class="math notranslate nohighlight">
+\[ Va = V_{TH} \]</div>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<img alt="../_images/73cbfbf6e50042d089809acb3bf1880a39779d3bf1978efa665b5801fc8086da.png" src="../_images/73cbfbf6e50042d089809acb3bf1880a39779d3bf1978efa665b5801fc8086da.png" />
+</div>
+</div>
+<section id="define-mesh-currents">
+<h3>Define Mesh Currents<a class="headerlink" href="#define-mesh-currents" title="Permalink to this heading">#</a></h3>
+<p><span class="math notranslate nohighlight">\(i_1\)</span> = Left mesh current (clockwise)</p>
+<p><span class="math notranslate nohighlight">\(i_2\)</span> = Right mesh current (clockwise)</p>
+<p>The 2 A source fixes the right mesh current:</p>
+<div class="math notranslate nohighlight">
+\[i_2 = -2 A\]</div>
+</section>
+<section id="mesh-1-equation-kvl">
+<h3>Mesh 1 Equation (KVL)<a class="headerlink" href="#mesh-1-equation-kvl" title="Permalink to this heading">#</a></h3>
+<p>Applying KVL around Mesh 1:</p>
+<div class="math notranslate nohighlight">
+\[
+-32 + 4i_1 + 12(i_1 - i_2) = 0
+\]</div>
+<p>The current source fixes the second mesh current:</p>
+<div class="math notranslate nohighlight">
+\[
+i_2 = -2\ \text{A}
+\]</div>
+<p>Substituting into the KVL equation:</p>
+<div class="math notranslate nohighlight">
+\[
+-32 + 4i_1 + 12\bigl(i_1 - (-2)\bigr) = 0
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+-32 + 4i_1 + 12(i_1 + 2) = 0
+\]</div>
+<p>Expanding:</p>
+<div class="math notranslate nohighlight">
+\[
+-32 + 4i_1 + 12i_1 + 24 = 0
+\]</div>
+<p>Combining like terms:</p>
+<div class="math notranslate nohighlight">
+\[
+16i_1 - 8 = 0
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+16i_1 = 8
+\]</div>
+<p>Solving for <span class="math notranslate nohighlight">\(i_1\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+i_1 = \frac{8}{16}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+i_1 = 0.5\ \text{A}
+\]</div>
+</section>
+<section id="calculate-open-circuit-voltage">
+<h3>Calculate Open-Circuit Voltage<a class="headerlink" href="#calculate-open-circuit-voltage" title="Permalink to this heading">#</a></h3>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Voc = 12(I1 - I2)
+</pre></div>
+</div>
+<p>Substitute values:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Voc = 12(0.5 - (-2))
+Voc = 12(2.5)
+Voc = 30 V
+</pre></div>
+</div>
+<p>Therefore:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Vth = Va = 30 V
+</pre></div>
+</div>
+</section>
+</section>
+<section id="step-2-find-thevenin-resistance-rth">
+<h2>Step 2: Find Thevenin Resistance (Rth)<a class="headerlink" href="#step-2-find-thevenin-resistance-rth" title="Permalink to this heading">#</a></h2>
+<p>Deactivate all independent sources.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>32 V source -&gt; Short circuit
+2 A source  -&gt; Open circuit
+</pre></div>
+</div>
+<p>Remaining network:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>4 Ω || 12 Ω
+</pre></div>
+</div>
+<p>Parallel equivalent:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Rp = (4 × 12)/(4 + 12)
+Rp = 48/16
+Rp = 3 Ω
+</pre></div>
+</div>
+<p>Add the series 1 Ω resistor:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Rth = 1 + 3
+Rth = 4 Ω
+</pre></div>
+</div>
+</section>
+<section id="final-answer">
+<h2>Final Answer<a class="headerlink" href="#final-answer" title="Permalink to this heading">#</a></h2>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Vth = 30 V
+Rth = 4 Ω
+</pre></div>
+</div>
+<section id="thevenin-equivalent-circuit">
+<h3>Thevenin Equivalent Circuit<a class="headerlink" href="#thevenin-equivalent-circuit" title="Permalink to this heading">#</a></h3>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>      +30 V
+ a o----( )----/\/\/----o b
+               4 Ω
+</pre></div>
+</div>
+</section>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
